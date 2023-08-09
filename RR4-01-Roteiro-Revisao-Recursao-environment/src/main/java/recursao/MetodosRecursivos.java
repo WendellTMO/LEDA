@@ -1,4 +1,5 @@
 package recursao;
+import java.util.*;
 
 public class MetodosRecursivos {
 
@@ -6,6 +7,16 @@ public class MetodosRecursivos {
 		int result = 0;
 		// TODO ESCREVA AQUI O CÓDIGO (USANDO RECURSAO) PARA CALCULAR A SOMA
 		// DOS EMENTOS DE UM ARRAY
+		
+		if (array.length == 1) {
+			result = array[0];
+		} else {
+			int copiedArray[] = new int[array.length-1];
+			System.arraycopy(array, 0, copiedArray, 0, copiedArray.length-1);
+
+			copiedArray[copiedArray.length-1] = array[copiedArray.length]; 
+			result = calcularSomaArray(copiedArray);
+		}
 		return result;
 	}
 	public long calcularFatorial(int n) {
