@@ -5,27 +5,42 @@ public class MetodosRecursivos {
 
 	public int calcularSomaArray(int[] array){
 		int result = 0;
-		// TODO ESCREVA AQUI O CÓDIGO (USANDO RECURSAO) PARA CALCULAR A SOMA
+		// ESCREVA AQUI O CÓDIGO (USANDO RECURSAO) PARA CALCULAR A SOMA
 		// DOS EMENTOS DE UM ARRAY
-		
+		if (array == null || array.length == 0) return result;
+
 		if (array.length == 1) {
 			result = array[0];
+
 		} else {
 			int copiedArray[] = new int[array.length-1];
-			System.arraycopy(array, 0, copiedArray, 0, copiedArray.length-1);
+			System.arraycopy(array, 0, copiedArray, 0, copiedArray.length);
+			copiedArray[copiedArray.length-1] = array[copiedArray.length] + array[copiedArray.length - 1];
 
-			copiedArray[copiedArray.length-1] = array[copiedArray.length]; 
 			result = calcularSomaArray(copiedArray);
 		}
+
 		return result;
 	}
+
+
 	public long calcularFatorial(int n) {
 		long result = 1;
-		// TODO ESCREVA AQUI O CÓDIGO (USANDO RECURSAO) PARA CALCULAR E IMPRIMIR
+		// ESCREVA AQUI O CÓDIGO (USANDO RECURSAO) PARA CALCULAR E IMPRIMIR
 		// O FATORIAL DO PARAMETRO
 		// DE ACORDO COM O QUE FOI MOSTRADO NO EXERCCICIO. OBSERVE QUE SENDO O
 		// METODO
 		// RECURSIVO, O FATORIAL DOS NUMEROS ANTERIORES TAMBEM VAO SER IMPRESSOS
+
+		if (n == 0) {
+			result = 1;
+
+		} else {
+			
+			result = n * calcularFatorial(n - 1);
+		}
+		System.out.println(n + "! = " + result);
+
 		return result;
 	}
 
@@ -40,6 +55,15 @@ public class MetodosRecursivos {
 		// PELA SOMA DOS OUTROS DOIS ANTERIORES. OBSERVE QUE SENDO O METODO
 		// RECURSIVO, O FIBONACCI DOS NUMEROS ANTERIORES TAMBEM VAO SER
 		// IMPRESSOS
+
+
+		if (n == 1) {
+			result = 1;
+		} else {
+
+			result = calcularFatorial(n - 1);
+		}
+
 		return result;
 	}
 
