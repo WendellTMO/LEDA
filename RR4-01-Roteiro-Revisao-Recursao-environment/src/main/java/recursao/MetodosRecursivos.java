@@ -55,49 +55,83 @@ public class MetodosRecursivos {
 		// PELA SOMA DOS OUTROS DOIS ANTERIORES. OBSERVE QUE SENDO O METODO
 		// RECURSIVO, O FIBONACCI DOS NUMEROS ANTERIORES TAMBEM VAO SER
 		// IMPRESSOS
+		
+		if (n == 0 ) {
+			return 0;
+		}
+		if (n == 1 || n == 2) {
+
+			return 1;
+			
+		}
+
+		result = calcularFibonacci(n - 1) + calcularFibonacci(n - 2);
+
+		return result;
+	}
 
 
-		if (n == 1) {
-			result = 1;
-		} else {
+	public int countNotNull(Object[] array) {
+		int result = 0;
+		// IMPLEMENTE AQUI O CODIGO QUE CONTA (USANDO RECURSAO) A
+		// QUANTIDADE DE ELEMENTOS NAO NULOS
+		// DE UM ARRAY DE OBJETOS RECEBIDO COMO PARAMETRO
+		
+		result = countNotNullRec(array, 0);
 
-			result = calcularFatorial(n - 1);
+		return result;
+	}
+
+	private int countNotNullRec(Object[] array, int length) {
+
+		if (array.length == length) {
+			return 0;
+		}
+
+		if (array[length] == null) return countNotNullRec(array, length + 1) + 1;
+		return countNotNullRec(array, length + 1);
+		
+	}
+
+
+	public long potenciaDe2(int expoente) {
+		long result = 1;
+		// IMPLEMENTE (USANDO RECURSAO) O CODIGO PARA PRODUZIR A N-ESIMA
+		// POTENCIA
+		// DE 2
+
+		if (expoente > 0) {
+			result = 2 * potenciaDe2(expoente - 1);
 		}
 
 		return result;
 	}
 
-	public int countNotNull(Object[] array) {
-		int result = 0;
-		// TODO IMPLEMENTE AQUI O CODIGO QUE CONTA (USANDO RECURSAO) A
-		// QUANTIDADE DE ELEMENTOS NAO NULOS
-		// DE UM ARRAY DE OBJETOS RECEBIDO COMO PARAMETRO
-		return result;
-	}
-
-	public long potenciaDe2(int expoente) {
-		int result = 1;
-		// TODO IMPLEMENTE (USANDO RECURSAO) O CODIGO PARA PRODUZIR A N-ESIMA
-		// POTENCIA
-		// DE 2
-		return result;
-	}
-
 	public double progressaoAritmetica(double termoInicial, double razao, int n) {
 		double result = 0;
-		// TODO IMPLEMENTE SEU CODIGO (USANDO RECURSAO) DE ENCONTRAR O n-ESIMO
+		// IMPLEMENTE SEU CODIGO (USANDO RECURSAO) DE ENCONTRAR O n-ESIMO
 		// TERMO
 		// DA PROGRESSAO ARITMETICA, DADO O TERMO INICIAL E A RAZAO
 		// VOCE NAO PODE USAR A FORMULA QUE CALCULA O N-ESIMO TERMO. DEVE USAR RECURSAO
+
+		if (n == 1) return termoInicial;
+		
+		result = progressaoAritmetica(termoInicial, razao, n - 1) + razao;
+
 		return result;
 	}
 
 	public double progressaoGeometrica(double termoInicial, double razao, int n) {
 		double result = 1;
-		// TODO IMPLEMENTE SEU CODIGO (USANDO RECURSAO) DE ENCONTRAR O n-ESIMO
+		// IMPLEMENTE SEU CODIGO (USANDO RECURSAO) DE ENCONTRAR O n-ESIMO
 		// TERMO
 		// DA PROGRESSAO GEOMETRICA, DADO O TERMO INICIAL E A RAZAO
 		// VOCE NAO PODE USAR A FORMULA QUE CALCULA O N-ESIMO TERMO. DEVE USAR RECURSAO
+
+		if (n == 1) return termoInicial;
+
+		result = progressaoGeometrica(termoInicial, razao, n - 1) * razao;
+
 		return result;
 	}
 	
