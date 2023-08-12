@@ -12,19 +12,21 @@ public class SelectionSort<T extends Comparable<T>> extends AbstractSorting<T> {
 
 	@Override
 	public void sort(T[] array, int leftIndex, int rightIndex) {
+		
+		if (array != null || rightIndex != 0) {
+			for (int i = leftIndex; i < rightIndex; i++) {
+				int min = i;
 
-		for (int i = leftIndex; i < rightIndex; i++) {
-			int min = i;
+				for (int j = i + 1; j < rightIndex + 1; j++) {
 
-			for (int j = i + 1; j < rightIndex - 1; j++) {
-
-				if (array[min].compareTo(array[j]) < 0) {
-					min = j;
+					if (array[j].compareTo(array[min]) < 0) {
+						min = j;
+					}
 				}
+
+				Util.swap(array, i, min);
 			}
-			Util.swap(array, i, min);
 		}
 
-		//throw new UnsupportedOperationException("Not Implemented yet!");
 	}
 }

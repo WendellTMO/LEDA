@@ -8,6 +8,7 @@ import org.junit.Test;
 
 import sorting.AbstractSorting;
 import sorting.simpleSorting.BubbleSort;
+import sorting.simpleSorting.InsertionSort;
 import sorting.simpleSorting.SelectionSort;
 
 public class StudentSortingTest {
@@ -22,10 +23,11 @@ public class StudentSortingTest {
 
 	@Before
 	public void setUp() {
-		populaVetorTamanhoPar(new Integer[] { 30, 28, 7, 29, 11, 26, 4, 22, 23,
-				31 });
+		//									   0   1  2   3   4  5   6   7   8   9
+		populaVetorTamanhoPar(new Integer[] { 30, 28, 7, 29, 11, 26, 4, 22, 23, 31 });
 		populaVetorTamanhoImpar(new Integer[] { 6, 41, 32, 7, 26, 4, 37, 49,
 				11, 18, 36 });
+		//                                  0  1  2  3  4  5  6  7
 		populaVetorRepetido(new Integer[] { 4, 9, 3, 4, 0, 5, 1, 4 });
 		populaVetorIgual(new Integer[] { 6, 6, 6, 6, 6, 6 });
 
@@ -40,7 +42,7 @@ public class StudentSortingTest {
 	private void getImplementation() {
 		// TODO O aluno deve instanciar sua implementação abaixo ao invés de
 		// null
-		this.implementation = new SelectionSort<>();
+		this.implementation = new InsertionSort<>();
 		//Assert.fail("Implementation not provided");
 	}
 
