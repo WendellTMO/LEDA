@@ -29,7 +29,6 @@ public class RecursiveBubbleSort<T extends Comparable<T>> extends
 			sort(array, leftIndex, rightIndex - 1);
 		}
 
-		//throw new UnsupportedOperationException("Not Implemented yet!");
 	}
 
 }

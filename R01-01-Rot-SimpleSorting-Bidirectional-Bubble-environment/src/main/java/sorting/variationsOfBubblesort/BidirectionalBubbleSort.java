@@ -40,6 +40,5 @@ public class BidirectionalBubbleSort<T extends Comparable<T>> extends
 			if (right_swap || left_swap) swapped = true;
 		}
 		
-		//throw new UnsupportedOperationException("Not Implemented yet!");
 	}
 }

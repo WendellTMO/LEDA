@@ -31,6 +31,5 @@ public class InsertionSort<T extends Comparable<T>> extends AbstractSorting<T> {
 			}
 		}
 
-		//throw new UnsupportedOperationException("Not Implemented yet!");
 	}
 }

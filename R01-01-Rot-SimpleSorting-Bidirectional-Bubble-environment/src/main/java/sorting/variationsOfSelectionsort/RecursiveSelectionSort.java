@@ -17,18 +17,18 @@ public class RecursiveSelectionSort<T extends Comparable<T>> extends
 	@Override
 	public void sort(T[] array, int leftIndex, int rightIndex) {
 		
-
-		int j = leftIndex;
-		for (int i = leftIndex + 1; i <= rightIndex; i++) {
-			if (array[i].compareTo(array[j]) < 0) {
-				j = i;
+		if (leftIndex <= rightIndex) {
+			int j = leftIndex;
+			for (int i = leftIndex + 1; i <= rightIndex; i++) {
+				if (array[i].compareTo(array[j]) < 0) {
+					j = i;
+				}
 			}
-		} 
+		 
+			Util.swap(array, leftIndex, j);
+			sort(array, leftIndex + 1, rightIndex);
+		}
 
-		Util.swap(array, leftIndex, j);
-		sort(array, leftIndex + 1, rightIndex);
-
-		//throw new UnsupportedOperationException("Not Implemented yet!");
 	}
 
 }
