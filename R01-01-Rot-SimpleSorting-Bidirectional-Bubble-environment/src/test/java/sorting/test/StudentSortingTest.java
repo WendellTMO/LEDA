@@ -145,6 +145,42 @@ public class StudentSortingTest {
 	}
 
 	@Test
+	public void testIndexOutOfBounds01() {		
+		Integer[] array = new Integer[] {5, 4, 3, 2, 1};
+		implementation.sort(array, 0, 6);
+		Integer[] copyArray = Arrays.copyOf(array, array.length);
+		
+		Assert.assertArrayEquals(array, copyArray);
+	}
+
+	@Test
+	public void testIndexOutOfBounds02() {		
+		Integer[] array = new Integer[] {5, 4, 3, 2, 1};
+		implementation.sort(array, -1, 4);
+		Integer[] copyArray = Arrays.copyOf(array, array.length);
+		
+		Assert.assertArrayEquals(array, copyArray);
+	}
+
+	@Test
+	public void testIndexOutOfBounds03() {		
+		Integer[] array = new Integer[] {5, 4, 3, 2, 1};
+		implementation.sort(array, 2, 2);
+		Integer[] copyArray = Arrays.copyOf(array, array.length);
+		
+		Assert.assertArrayEquals(array, copyArray);
+	}
+
+	@Test
+	public void testIndexOutOfBounds04() {		
+		Integer[] array = new Integer[] {5, 4, 3, 2, 1};
+		implementation.sort(array, 4, 0);
+		Integer[] copyArray = Arrays.copyOf(array, array.length);
+		
+		Assert.assertArrayEquals(array, copyArray);
+	}
+
+	@Test
 	public void extraCase01() {
 		Integer[] array = new Integer[] {4, 4, 4, 5};
 		Integer[] copyArray = Arrays.copyOf(array, array.length);
