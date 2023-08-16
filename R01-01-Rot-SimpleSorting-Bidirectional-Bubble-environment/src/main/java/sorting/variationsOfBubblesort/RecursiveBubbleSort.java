@@ -18,17 +18,22 @@ public class RecursiveBubbleSort<T extends Comparable<T>> extends
 	public void sort(T[] array, int leftIndex, int rightIndex) {
 		if (leftIndex > -1 && rightIndex < array.length && leftIndex < rightIndex) {
 
-		
-			for (int i = leftIndex; i < rightIndex; i++) {
-				if (array[i].compareTo(array[i + 1]) > 0) {
-					Util.swap(array, i, i + 1);
-
-				}
-			}
-
+			bubble(array, leftIndex, rightIndex);
 			sort(array, leftIndex, rightIndex - 1);
 		}
 
 	}
+
+	private void bubble(T[] array, int leftIndex, int rightIndex) {
+		if (leftIndex < rightIndex) {
+			if (array[leftIndex].compareTo(array[leftIndex + 1]) > 0) {
+				Util.swap(array, leftIndex, leftIndex + 1);
+				bubble(array, leftIndex + 1, rightIndex);
+			}
+			bubble(array, leftIndex + 1, rightIndex);
+		}
+	}
+
+	
 
 }
