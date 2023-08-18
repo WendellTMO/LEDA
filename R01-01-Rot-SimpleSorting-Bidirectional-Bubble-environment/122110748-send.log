@@ -77,3 +77,43 @@
   <level>FINE</level>
   <message>File 122110748-WENDELL TOME MARINHO OLIVEIRA.zip was received. It was sent by WENDELL TOME MARINHO OLIVEIRA from IP 150.165.42.158 at 16-08-2023 09*51*06</message>
 </record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-08-16T22:41:50.533-0300</date>
+  <logger>WENDELL TOME MARINHO OLIVEIRA</logger>
+  <level>FINE</level>
+  <message>File 122110748-WENDELL TOME MARINHO OLIVEIRA.zip was received. It was sent by WENDELL TOME MARINHO OLIVEIRA from IP 192.168.0.103 at 16-08-2023 22*41*50</message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-08-16T22:44:18.263-0300</date>
+  <logger>WENDELL TOME MARINHO OLIVEIRA</logger>
+  <level>FINE</level>
+  <message>File 122110748-WENDELL TOME MARINHO OLIVEIRA.zip was received. It was sent by WENDELL TOME MARINHO OLIVEIRA from IP 192.168.0.103 at 16-08-2023 22*44*18</message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-08-17T19:57:13.168-0300</date>
+  <logger>WENDELL TOME MARINHO OLIVEIRA</logger>
+  <level>FINE</level>
+  <message>File 122110748-WENDELL TOME MARINHO OLIVEIRA.zip was received. It was sent by WENDELL TOME MARINHO OLIVEIRA from IP 192.168.0.104 at 17-08-2023 19*57*13</message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-08-17T23:01:48.071-0300</date>
+  <logger>WENDELL TOME MARINHO OLIVEIRA</logger>
+  <level>FINE</level>
+  <message>File 122110748-WENDELL TOME MARINHO OLIVEIRA.zip was received. It was sent by WENDELL TOME MARINHO OLIVEIRA from IP 192.168.0.104 at 17-08-2023 23*01*48</message>
+</record>

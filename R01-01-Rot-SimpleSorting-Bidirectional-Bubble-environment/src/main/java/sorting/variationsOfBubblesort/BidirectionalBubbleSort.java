@@ -38,6 +38,10 @@ public class BidirectionalBubbleSort<T extends Comparable<T>> extends
 					}
 				}
 
+				// se eu ussasse so ó "swapped" ele iria funcionar,
+				// porém no intuito de garantir uma estabilidade maior no código
+				// e melhor a leitura dele, eu fiz dois booleans que indicam a 
+				// passada da direita e a passada da esquerda.
 				if (right_swap || left_swap) swapped = true;
 			}
 		}
