@@ -33,7 +33,7 @@ public class RecursiveSelectionSort<T extends Comparable<T>> extends
  		if (leftIndex <= rightIndex) {
 			if (array[leftIndex].compareTo(array[min]) < 0) {
 				min = leftIndex;
-				return selecSort(array, leftIndex + 1, rightIndex, min);
+				selecSort(array, leftIndex + 1, rightIndex, min);
 			}
 			return selecSort(array, leftIndex + 1, rightIndex, min);
 		} else {

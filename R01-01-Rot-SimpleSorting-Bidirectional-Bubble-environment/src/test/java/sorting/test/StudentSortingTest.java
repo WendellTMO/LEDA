@@ -13,6 +13,7 @@ import sorting.simpleSorting.SelectionSort;
 import sorting.variationsOfBubblesort.BidirectionalBubbleSort;
 import sorting.variationsOfBubblesort.RecursiveBubbleSort;
 import sorting.variationsOfSelectionsort.RecursiveSelectionSort;
+import sorting.simpleSorting.RecursiveInsertionSort;
 
 public class StudentSortingTest {
 
@@ -23,6 +24,8 @@ public class StudentSortingTest {
 	private Integer[] vetorValoresIguais;
 
 	public AbstractSorting<Integer> implementation;
+	public AbstractSorting<Integer> implementation2;
+	public AbstractSorting<Integer> implementation3;
 
 	@Before
 	public void setUp() {
@@ -45,7 +48,9 @@ public class StudentSortingTest {
 	private void getImplementation() {
 		// TODO O aluno deve instanciar sua implementação abaixo ao invés de
 		// null
-		this.implementation = new SelectionSort<>();
+		this.implementation = new RecursiveInsertionSort<>();
+		this.implementation2 = new RecursiveInsertionSort<>();
+		this.implementation3 = new RecursiveInsertionSort<>();
 		//Assert.fail("Implementation not provided");
 	}
 
@@ -135,12 +140,12 @@ public class StudentSortingTest {
 		Integer[] array = new Integer[] {10, 9, 8, 7, 6, 5, 4, 3, 2, 1};
 		implementation.sort(array, 5, array.length - 1);
 		Assert.assertArrayEquals(array, new Integer[] {10, 9, 8, 7, 6, 1, 2, 3, 4, 5});
-		implementation.sort(array, 0, 4);
+		implementation2.sort(array, 0, 4);
 		Assert.assertArrayEquals(array, new Integer[] {6, 7, 8, 9, 10, 1, 2, 3, 4, 5});
 		
 		Integer[] copyArray = Arrays.copyOf(array, array.length);
 		Arrays.sort(copyArray);
-		implementation.sort(array, 0, array.length - 1);
+		implementation3.sort(array, 0, array.length - 1);
 		Assert.assertArrayEquals(array,copyArray);
 	}
 
