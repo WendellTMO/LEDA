@@ -23,10 +23,7 @@ public class QuickSortMedianOfThree<T extends Comparable<T>> extends
 	public void sort(T[] array, int leftIndex, int rightIndex) {
 		if (leftIndex < rightIndex && leftIndex > -1 && rightIndex < array.length) {
 
-			int midIndex = (leftIndex + rightIndex) / 2;
- 			medianCalculator(array, leftIndex, midIndex, rightIndex);
-
-			int pivot = partion(array, leftIndex, rightIndex - 1);
+			int pivot = partion(array, leftIndex , rightIndex);
 			sort(array, leftIndex, pivot - 1);
 			sort(array, pivot + 1, rightIndex); 
 		}		
@@ -35,8 +32,10 @@ public class QuickSortMedianOfThree<T extends Comparable<T>> extends
 
 		
 	private int partion(T[]array, int leftIndex, int rightIndex) {
+		int midIndex = (leftIndex + rightIndex) / 2;
+ 		medianCalculator(array, leftIndex, midIndex, rightIndex);
 
-		int i = leftIndex;
+		int i = leftIndex + 1;
 		int j = rightIndex - 1;
 
 		int pivot_posi = rightIndex;
