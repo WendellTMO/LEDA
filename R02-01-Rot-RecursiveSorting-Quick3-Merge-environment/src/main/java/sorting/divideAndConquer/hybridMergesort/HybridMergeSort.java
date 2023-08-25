@@ -37,6 +37,8 @@ public class HybridMergeSort<T extends Comparable<T>> extends
 	// Ou seja, ia fazer a mesma coisa e burlar o sistema
 	// ai preferir deixar assim
 	public void sort(T[] array, int leftIndex, int rightIndex) {
+		MERGESORT_APPLICATIONS = 0;
+		INSERTIONSORT_APPLICATIONS = 0;
 		if (leftIndex < rightIndex && leftIndex > -1 && rightIndex < array.length) {
 			
 			int diferenca = (rightIndex - leftIndex);
@@ -49,10 +51,12 @@ public class HybridMergeSort<T extends Comparable<T>> extends
 				int middle = (leftIndex + rightIndex) / 2;
 
 				sort(array, leftIndex, middle);
+				int count = INSERTIONSORT_APPLICATIONS;
 				sort(array, middle + 1, rightIndex);
-
+				INSERTIONSORT_APPLICATIONS += count;
+				
 				merge(array, leftIndex, middle, rightIndex);
-		
+
 			}
 
 		}

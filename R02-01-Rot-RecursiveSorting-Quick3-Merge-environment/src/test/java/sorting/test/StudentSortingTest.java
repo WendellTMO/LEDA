@@ -42,7 +42,7 @@ public class StudentSortingTest {
 	private void getImplementation() {
 		// TODO O aluno deve instanciar sua implementação abaixo ao invés de
 		// null
-		this.implementation = new HybridMergeSort<>();
+		this.implementation = new QuickSortMedianOfThree<>();
 		//Assert.fail("Implementation not provided");
 	}
 

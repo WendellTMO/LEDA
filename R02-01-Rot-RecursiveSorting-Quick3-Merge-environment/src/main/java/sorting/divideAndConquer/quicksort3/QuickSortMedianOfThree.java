@@ -57,7 +57,7 @@ public class QuickSortMedianOfThree<T extends Comparable<T>> extends
 		}
 
 		Util.swap(array, pivot_posi, i);
-
+		
 		return i;
 	}
 	
