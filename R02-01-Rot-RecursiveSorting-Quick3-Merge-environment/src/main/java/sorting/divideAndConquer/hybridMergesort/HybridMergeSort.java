@@ -1,6 +1,8 @@
 package sorting.divideAndConquer.hybridMergesort;
 
 import sorting.AbstractSorting;
+import sorting.divideAndConquer.MergeSort;
+import util.Util;
 
 /**
  * A classe HybridMergeSort representa a implementação de uma variação do
@@ -29,8 +31,84 @@ public class HybridMergeSort<T extends Comparable<T>> extends
 	protected static int MERGESORT_APPLICATIONS = 0;
 	protected static int INSERTIONSORT_APPLICATIONS = 0;
 
+	// Não coloque ele resetando aqui dentro do sort, pq na minha cabeça não faz sentido
+	// Eu poderia até fazer um "MergeSort" e dentro dele ele iria fazer a contagem
+	// mas ai eu iria retirar o caso daqui, e ia proteger dentro de outro método
+	// Ou seja, ia fazer a mesma coisa e burlar o sistema
+	// ai preferir deixar assim
 	public void sort(T[] array, int leftIndex, int rightIndex) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		if (leftIndex < rightIndex && leftIndex > -1 && rightIndex < array.length) {
+			
+			int diferenca = (rightIndex - leftIndex);
+
+			if (diferenca <= SIZE_LIMIT) {
+				insertionSort(array, leftIndex, rightIndex);
+
+			} else {
+
+				int middle = (leftIndex + rightIndex) / 2;
+
+				sort(array, leftIndex, middle);
+				sort(array, middle + 1, rightIndex);
+
+				merge(array, leftIndex, middle, rightIndex);
+		
+			}
+
+		}
+
+	}
+
+	private void insertionSort(T[] array, int leftIndex, int rightIndex) {
+		INSERTIONSORT_APPLICATIONS += 1;
+		for (int i = leftIndex; i < rightIndex; i++) {
+
+			boolean swaped = true;
+
+			int j = i + 1;
+			while (swaped) {
+				swaped = false;
+				if (j > leftIndex && j < rightIndex + 1) {
+					if (array[j].compareTo(array[j - 1]) < 0) {
+						Util.swap(array, j, j - 1);
+						j--;
+						swaped = true;
+					}
+				}
+			}
+		}
+	}
+
+	private void merge(T[] array, int leftIndex, int middle, int rightIndex) {
+		MERGESORT_APPLICATIONS += 1;
+		Integer[] aux = new Integer[array.length];
+		for (int i = leftIndex; i <= rightIndex; i++) {
+			aux[i] = (int) array[i];
+		}
+
+		int i = leftIndex;
+		int k = leftIndex;
+		int j = middle + 1;
+
+		while (i <= middle && j <= rightIndex) {
+			if (aux[i].compareTo(aux[j]) < 0) {
+				array[k] = (T) aux[i]; 
+				k++; i++;
+			} else {
+				array[k] = (T) aux[j];
+				k++; j++;
+			}
+		}
+
+		while(i <= middle) {
+			array[k] = (T) aux[i];
+			k++; i++;
+		}
+		
+
+		while(j <= rightIndex) {
+			array[k] = (T) aux[j];
+			k++; j++;
+		}
 	}
 }

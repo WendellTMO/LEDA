@@ -1,6 +1,7 @@
 package sorting.divideAndConquer.quicksort3;
 
 import sorting.AbstractSorting;
+import util.Util;
 
 /**
  * A classe QuickSortMedianOfThree representa uma variação do QuickSort que
@@ -20,7 +21,62 @@ public class QuickSortMedianOfThree<T extends Comparable<T>> extends
 		AbstractSorting<T> {
 
 	public void sort(T[] array, int leftIndex, int rightIndex) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		if (leftIndex < rightIndex && leftIndex > -1 && rightIndex < array.length) {
+
+			int midIndex = (leftIndex + rightIndex) / 2;
+ 			medianCalculator(array, leftIndex, midIndex, rightIndex);
+
+			int pivot = partion(array, leftIndex, rightIndex - 1);
+			sort(array, leftIndex, pivot - 1);
+			sort(array, pivot + 1, rightIndex); 
+		}		
+
 	}
+
+		
+	private int partion(T[]array, int leftIndex, int rightIndex) {
+
+		int i = leftIndex;
+		int j = rightIndex - 1;
+
+		int pivot_posi = rightIndex;
+
+		while (i <= j) {
+			if(array[j].compareTo(array[pivot_posi]) > 0) {
+				j--;
+
+			} else {
+				if (array[pivot_posi].compareTo(array[i]) < 0) {
+					Util.swap(array, i, j);
+					j--;
+			
+				} else {
+					i++;
+				}
+			}
+		}
+
+		Util.swap(array, pivot_posi, i);
+
+		return i;
+	}
+	
+	
+	private void medianCalculator(T[] array, int left, int mid, int right) {
+		if (array[left].compareTo(array[mid]) > 0) {
+			Util.swap(array, left, mid);
+		}
+
+		if (array[left].compareTo(array[right]) > 0) {
+			Util.swap(array, left, right);
+		}
+
+		if (array[mid].compareTo(array[right]) > 0) {
+			Util.swap(array, mid, right);
+		}
+
+		Util.swap(array, mid, right - 1);
+	}
+
+
 }
