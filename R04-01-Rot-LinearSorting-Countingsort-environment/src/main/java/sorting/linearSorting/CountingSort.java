@@ -17,8 +17,56 @@ public class CountingSort extends AbstractSorting<Integer> {
 
 	@Override
 	public void sort(Integer[] array, int leftIndex, int rightIndex) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		if (leftIndex < rightIndex && leftIndex > -1 && rightIndex < array.length) {
+			Integer[] min_and_max = findLimit(array, leftIndex, rightIndex);
+
+			int min = min_and_max[0];
+			int max = min_and_max[1];
+
+			int count_length = (max - min);
+			Integer[] count = new Integer[count_length + 1];
+		
+			for (int i = leftIndex; i <= rightIndex; i++) {
+				if (count[(array[i] - min)] == null) {
+					count[(array[i] - min)] = 1;
+				} else {
+					count[(array[i] - min)] += 1;
+				}
+			}
+
+			int temp_left = leftIndex;
+			for (int j = 0 ; j < count.length; j++) {
+				if (count[j] != null) {
+					while (count[j] > 0) {
+						if (temp_left <= rightIndex) {
+							array[temp_left] = j + min;
+							count[j] -= 1;
+							temp_left += 1;
+						}
+					}
+				}
+			}
+		}
+		
+	}
+
+	private Integer[] findLimit(Integer[] array, int leftIndex, int rightIndex) {
+		int max = array[leftIndex];
+		int min = array[leftIndex];
+
+		for (int i = leftIndex; i <= rightIndex; i++) {
+			if (array[i].compareTo(min) < 0){
+				min = array[i];
+			}
+
+			if (array[i].compareTo(max) > 0) {
+				max = array[i];
+			}
+		}
+		Integer[] retorno = new Integer[] {min, max};
+		
+		return retorno;
+
 	}
 
 }
