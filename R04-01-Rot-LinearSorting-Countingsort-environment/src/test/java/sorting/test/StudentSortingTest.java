@@ -7,7 +7,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import sorting.AbstractSorting;
-import sorting.linearSorting.CountingSort;
 import sorting.linearSorting.ExtendedCountingSort;
 
 public class StudentSortingTest {
@@ -295,7 +294,7 @@ public class StudentSortingTest {
 	}
 
 	@Test
-	public void extraCase14() {
+	public void negativeCase01() {
 		Integer[] array = new Integer[] {-3, 3, -5, -7, 7, -2, -1, 2, 8, 7, 8, 1};
 		Integer[] copyArray = new Integer[] {-7, -5, -3, -2, -1, 1, 2, 3, 7, 7, 8, 8};
 		implementation.sort(array, 0, array.length - 1);
@@ -303,12 +302,189 @@ public class StudentSortingTest {
 	}
 
 	@Test
-	public void extraCase15() {
+	public void negativeCase02() {
 		Integer[] array = new Integer[] {-3, 0, -4, 1, -5,-6, -7, 0};
 		Integer[] copyArray = new Integer[] {-7, -6, -5, -4, -3, 0, 0, 1};
 		implementation.sort(array, 0, array.length - 1);
 		Assert.assertArrayEquals(array,copyArray);
 	}
+
+	@Test
+	public void negativeCase03() {
+		Integer[] array = new Integer[] {1, 0, -1};
+		Integer[] copyArray = Arrays.copyOf(array, array.length);
+		Arrays.sort(copyArray);
+		implementation.sort(array, 0, array.length - 1);
+		Assert.assertArrayEquals(copyArray,array);
+	}
+
+	@Test
+	public void negativeCase04() {
+		Integer[] array = new Integer[] {0, -1, 1};
+		Integer[] copyArray = Arrays.copyOf(array, array.length);
+		Arrays.sort(copyArray);
+		implementation.sort(array, 0, array.length - 1);
+		Assert.assertArrayEquals(copyArray,array);
+	}
+
+	@Test
+	public void negativeCase05() {
+		Integer[] array = new Integer[] {1,-1,0};
+		Integer[] copyArray = Arrays.copyOf(array, array.length);
+		Arrays.sort(copyArray);
+		implementation.sort(array, 0, array.length - 1);
+		Assert.assertArrayEquals(copyArray,array);
+	}
+
+	@Test
+	public void negativeCase06() {
+		Integer[] array = new Integer[] {-1};
+		implementation.sort(array, 0, array.length - 1);
+		Assert.assertArrayEquals(array, new Integer[] {-1});
+
+		Integer[] array2 = new Integer[] {0};
+		implementation.sort(array2, 0, array.length - 1);
+		Assert.assertArrayEquals(array2, new Integer[] {0});
+	}
+
+	@Test
+	public void negativeCase07() {
+		Integer[] array = new Integer[] {1, -1};
+		implementation.sort(array, 0, array.length - 1);
+		Integer[] copyArray = Arrays.copyOf(array, array.length);
+		Arrays.sort(copyArray);
+		Assert.assertArrayEquals(array, copyArray);
+
+		Integer[] array2 = new Integer[] {0, -1};
+		implementation.sort(array2, 0, array.length - 1);
+		Integer[] copyArray2 = Arrays.copyOf(array, array.length);
+		Arrays.sort(copyArray2);
+		Assert.assertArrayEquals(array, copyArray2);
+	}
+
+	@Test
+	public void negativeCase08() {
+		Integer[] array = new Integer[] {-1, -2, -5, -6, 0};
+		Integer[] copyArray = Arrays.copyOf(array, array.length);
+		Arrays.sort(copyArray);
+		implementation.sort(array, 0, array.length - 1);
+		Assert.assertArrayEquals(copyArray,array);
+	}
+
+	@Test
+	public void negativeCase09() {
+		Integer[] array = new Integer[] {0, 1, 2, 3, 4, -5};
+		Integer[] copyArray = Arrays.copyOf(array, array.length);
+		Arrays.sort(copyArray);
+		implementation.sort(array, 0, array.length - 1);
+		Assert.assertArrayEquals(copyArray,array);
+	}
+
+	@Test
+	public void negativeCase10() {
+		Integer[] array = new Integer[] {-4,-3,-2,-1,-6};
+		Integer[] copyArray = Arrays.copyOf(array, array.length);
+		Arrays.sort(copyArray);
+		implementation.sort(array, 0, array.length - 1);
+		Assert.assertArrayEquals(copyArray,array);
+	}
+
+	@Test
+	public void negativeCase11() {
+		Integer[] array = new Integer[] {-1,-1,-1,-1,-1};
+		Integer[] copyArray = Arrays.copyOf(array, array.length);
+		Arrays.sort(copyArray);
+		implementation.sort(array, 0, array.length - 1);
+		Assert.assertArrayEquals(copyArray,array);
+	}
+
+	@Test
+	public void negativeCase12() {
+		Integer[] array = new Integer[] {0,0,0,-1};
+		Integer[] copyArray = Arrays.copyOf(array, array.length);
+		Arrays.sort(copyArray);
+		implementation.sort(array, 0, array.length - 1);
+		Assert.assertArrayEquals(copyArray,array);
+	}
+
+		
+	@Test
+	public void negativeCase13() {
+		Integer[] array = new Integer[] {-3,3,-2,2,-1,1,0};
+		Integer[] copyArray = Arrays.copyOf(array, array.length);
+		Arrays.sort(copyArray);
+		implementation.sort(array, 0, array.length - 1);
+		Assert.assertArrayEquals(copyArray,array);
+	}
+
+	@Test
+	public void negativeCase14() {
+		Integer[] array = new Integer[] {-5,3,4,6,2,-1,-3,0};
+		Integer[] copyArray = Arrays.copyOf(array, array.length);
+		Arrays.sort(copyArray);
+		implementation.sort(array, 0, array.length - 1);
+		Assert.assertArrayEquals(copyArray,array);
+	}
+
+	@Test
+	public void negativeCase15() {
+		Integer[] array = new Integer[] {-10,-9,-8,-7,-6,-5,-4,-3,-2,-1};
+		Integer[] copyArray = Arrays.copyOf(array, array.length);
+		Arrays.sort(copyArray);
+		implementation.sort(array, 0, array.length - 1);
+		Assert.assertArrayEquals(copyArray,array);
+	}
+
+	@Test
+	public void negativeCase16() {
+		Integer[] array = new Integer[] {-1,-2,-3,-4,-5,-6,-7,-8,-9,-10};
+		Integer[] copyArray = Arrays.copyOf(array, array.length);
+		Arrays.sort(copyArray);
+		implementation.sort(array, 0, array.length - 1);
+		Assert.assertArrayEquals(copyArray,array);
+	}
+
+	@Test
+	public void negativeCase17() {
+		Integer[] array = new Integer[] {10,-1,0,1,2,3,4,5};
+		Integer[] copyArray = Arrays.copyOf(array, array.length);
+		Arrays.sort(copyArray);
+		implementation.sort(array, 0, array.length - 1);
+		Assert.assertArrayEquals(copyArray,array);
+	}
+
+	@Test
+	public void negativeCase18() {
+		Integer[] array = new Integer[] {-5,1,3,-1,4,-2,5};
+		Integer[] copyArray = Arrays.copyOf(array, array.length);
+		Arrays.sort(copyArray);
+		implementation.sort(array, 0, array.length - 1);
+		Assert.assertArrayEquals(copyArray,array);
+	}
+
+	@Test
+	public void testPartialSortNegative01() {
+		//								  0  1  2  3  4  5  6  7  8  9
+		Integer[] array = new Integer[] {-1, -2, -3, -4, -5, -6, -7, -8, -9, -10};
+		implementation.sort(array, 5, array.length - 1);
+		Assert.assertArrayEquals(array, new Integer[] {-1,-2,-3,-4,-5,-10,-9,-8,-7,-6});
+		implementation.sort(array, 0, 4);
+		Assert.assertArrayEquals(array, new Integer[] {-5,-4,-3,-2,-1,-10,-9,-8,-7,-6});
+		
+		Integer[] copyArray = Arrays.copyOf(array, array.length);
+		Arrays.sort(copyArray);
+		implementation.sort(array, 0, array.length - 1);
+		Assert.assertArrayEquals(array,copyArray);
+	}
+
+	@Test
+	public void testPartialSortNegative02() {
+		//								  0  1  2  3  4  5  6  7     8  9
+		Integer[] array = new Integer[] {5, 3,  1, 2, 5, 0, 8, -9, -10, 0};
+		implementation.sort(array, 4, 7);
+		Assert.assertArrayEquals(array, new Integer[] {5, 3,  1, 2, -9,0,5,8, -10, 0});
+	}
+
 
 
 	// MÉTODOS QUE OS ALUNOS PODEM CRIAR

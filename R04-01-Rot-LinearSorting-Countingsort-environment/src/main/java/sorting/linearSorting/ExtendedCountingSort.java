@@ -17,10 +17,10 @@ public class ExtendedCountingSort extends AbstractSorting<Integer> {
 			
 
 
-			int min_negative = limits_check[0] * - 1;
-			int max_negative = limits_check[1] * - 1;
+			int max_negative = limits_check[0] * - 1;
+			int min_negative = limits_check[1] * - 1;
 			
-			int count_length_negative = (min_negative - max_negative);
+			int count_length_negative = (max_negative - min_negative);
 			Integer[] count_negative = new Integer[count_length_negative + 1];
 
 
@@ -33,10 +33,10 @@ public class ExtendedCountingSort extends AbstractSorting<Integer> {
 			for (int i = leftIndex; i <= rightIndex; i++) {
 				if (array[i].compareTo(0) < 0) {
 
-					if(count_negative[((array[i] * -1) - max_negative)] == null) {
-						count_negative[((array[i] * -1) - max_negative)] = 1;
+					if(count_negative[((array[i] * -1) - min_negative)] == null) {
+						count_negative[((array[i] * -1) - min_negative)] = 1;
 					} else {
-						count_negative[((array[i] * -1) - max_negative)] += 1;
+						count_negative[((array[i] * -1) - min_negative)] += 1;
 					}
 
 				} else {
@@ -53,10 +53,10 @@ public class ExtendedCountingSort extends AbstractSorting<Integer> {
 			int j = count_negative.length - 1;
 			int temp_left = leftIndex;
 			while((j > -1 || i < count_positive.length) && temp_left <= rightIndex) {
-				if (temp_left <= count_negative.length - 1 && j != -1) {
+				if (j != -1) {
 					if (count_negative[j] != null) {
 						while (count_negative[j] > 0) {
-							array[temp_left] = (j + max_negative) * -1;
+							array[temp_left] = (j + min_negative) * -1;
 							count_negative[j] -= 1;
 							temp_left += 1;
 						}
@@ -89,18 +89,18 @@ public class ExtendedCountingSort extends AbstractSorting<Integer> {
 		int max_of_positive_n = array[leftIndex];
 		int min_of_positive_n = array[leftIndex];
 
-		int max_of_negative_n = array[leftIndex];
 		int min_of_negative_n = array[leftIndex];
+		int max_of_negative_n = array[leftIndex];
 
 		for (int i = leftIndex; i <= rightIndex; i++) {
 			if (array[i].compareTo(0) < 0) {
 				 
-				if (array[i].compareTo(min_of_negative_n) < 0) {
-					min_of_negative_n = array[i];
+				if (array[i].compareTo(max_of_negative_n) < 0) {
+					max_of_negative_n = array[i];
 				}
 
-				if(array[i].compareTo(max_of_negative_n) > 0) {
-					max_of_negative_n = array[i];
+				if(array[i].compareTo(min_of_negative_n) > 0) {
+					min_of_negative_n = array[i];
 				}
 
 			} else {
@@ -115,17 +115,17 @@ public class ExtendedCountingSort extends AbstractSorting<Integer> {
 			}
 		}
 		
-		if (max_of_negative_n >= 0 && min_of_negative_n >= 0) {
-			max_of_negative_n = -1;
+		if (min_of_negative_n >= 0 && max_of_negative_n >= 0) {
 			min_of_negative_n = -1;
+			max_of_negative_n = -1;
 		}
 
 		if ((min_of_positive_n < 0 && max_of_positive_n < 0)) {
 			max_of_positive_n = -1;
-			min_of_negative_n = -1;
+			min_of_positive_n = -1;
 		}
 
-		Integer[] retorno = new Integer[]	{min_of_negative_n, max_of_negative_n, 
+		Integer[] retorno = new Integer[]	{max_of_negative_n, min_of_negative_n, 
 										  	min_of_positive_n, max_of_positive_n};
 
 							
