@@ -56,6 +56,8 @@ public class QuickSelect<T extends Comparable<T>> {
 	private int quickSelectionImpl(T[] array, int leftIndex, int rightIndex, int k) {
 		int res = 0;
 		if (leftIndex <= rightIndex) {
+			// o controle aqui tá com o index do pivot e o index de k que é K - 1,
+			// assim eu faço o controle
 			int pivot = partition(array, leftIndex, rightIndex);
 
 			if (pivot == k) {

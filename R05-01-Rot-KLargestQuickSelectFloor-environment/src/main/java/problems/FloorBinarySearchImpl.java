@@ -24,9 +24,13 @@ public class FloorBinarySearchImpl implements Floor {
 			
 			if (array[mid] == target ) {
 				res = array[mid];
-			} else if (array[mid] < target) {
+			
+			} else if (array[mid].compareTo(target) < 0) {
+				
 				Integer temp_res = array[mid];
+				
 				res = floorBinarySearch(array, mid + 1, right, target); 
+				
 				if (res == null) {
 					res = temp_res;
 				}

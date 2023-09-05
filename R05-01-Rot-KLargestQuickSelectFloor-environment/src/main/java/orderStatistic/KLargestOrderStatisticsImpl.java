@@ -32,8 +32,11 @@ public class KLargestOrderStatisticsImpl<T extends Comparable<T>> implements KLa
 	@SuppressWarnings("unchecked")
 	@Override
 	public T[] getKLargest(T[] array, int k) {
-		T[] res = (T[]) new Comparable[k];
-		if (k <= array.length) {
+		T[] res = (T[]) new Comparable[] {};
+		
+		if (k <= array.length && k > 0) {
+			res = (T[]) new Comparable[k];
+
 			int i = 0;
 			int k_largest = array.length - k;
 			while (i < res.length) {
