@@ -2,6 +2,8 @@ package adt.queue;
 
 import adt.stack.Stack;
 import adt.stack.StackImpl;
+import adt.stack.StackOverflowException;
+import adt.stack.StackUnderflowException;
 
 public class QueueUsingStack<T> implements Queue<T> {
 
@@ -15,32 +17,91 @@ public class QueueUsingStack<T> implements Queue<T> {
 
 	@Override
 	public void enqueue(T element) throws QueueOverflowException {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		if (isFull()) {
+			throw new QueueOverflowException();
+		}
+
+		try {
+			stack1.push(element);
+		} catch (StackOverflowException e) {
+			e.printStackTrace();
+		}
+
 	}
 
 	@Override
 	public T dequeue() throws QueueUnderflowException {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		if (isEmpty()) {
+			throw new QueueUnderflowException();
+		}
+
+		moveToStack2();
+		T res = null;
+		try {
+			res = stack2.pop();
+		} catch (StackUnderflowException e) {
+			e.printStackTrace();
+		}
+		moveToStack1();
+		return res;
+		
 	}
 
 	@Override
 	public T head() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		T res = null;
+		if (!isEmpty()) {
+			moveToStack2();
+			res = stack2.top();
+			moveToStack1();
+		}
+		return res;
 	}
 
 	@Override
 	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		boolean res = stack1.isEmpty();
+		return res;
 	}
 
 	@Override
 	public boolean isFull() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		boolean res = stack1.isFull();
+		return res;
+	}
+
+	private void moveToStack1(){
+		while(!stack1.isFull()) {
+			T elementStack2 = null;
+			try {
+				elementStack2 = stack2.pop();
+			} catch (StackUnderflowException e) {
+				e.printStackTrace();
+			}
+			try {
+				stack1.push(elementStack2);
+			} catch (StackOverflowException e) {
+				e.printStackTrace();
+			}
+		}
+
+	}
+
+	private void moveToStack2(){
+		while(!stack2.isFull()) {
+			T elementStack1 = null;
+			try {
+				elementStack1 = stack1.pop();
+			} catch (StackUnderflowException e) {
+				e.printStackTrace();
+			}
+
+			try {
+				stack2.push(elementStack1);
+			} catch (StackOverflowException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 }
