@@ -40,7 +40,8 @@ public class QueueImpl<T> implements Queue<T> {
 
 	private void shiftLeft() {
 		for (int i = 0; i < tail; i++) {
-			T temp_element = array[i++];
+			int next = i + 1;
+			T temp_element = array[next];
 			array[i] = temp_element;
 		}
 	}
