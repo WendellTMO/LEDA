@@ -74,7 +74,7 @@ public class QueueUsingStack<T> implements Queue<T> {
 	}
 
 	private void moveToStack1(){
-		while(!stack1.isFull() && stack2.top() != null) {
+		while(!stack2.isEmpty()) {
 			T elementStack2 = null;
 
 			try {
@@ -93,7 +93,7 @@ public class QueueUsingStack<T> implements Queue<T> {
 	}
 
 	private void moveToStack2(){
-		while(!stack2.isFull() && stack1.top() != null) {
+		while(!stack1.isEmpty()) {
 			T elementStack1 = null;
 			try {
 				elementStack1 = stack1.pop();

@@ -38,12 +38,12 @@ public class StudentQueueTest {
 	}
 
 	private void getImplementations() {
-		// TODO O aluno deve ajustar aqui para instanciar sua implementação
 		queue1 = new QueueUsingStack<Integer>(4);
 		queue2 = new QueueUsingStack<Integer>(2);
 		queue3 = new QueueUsingStack<Integer>(5);
 		queue4 = new QueueUsingStack<Integer>(5);
 		queue5 = new QueueUsingStack<Integer>(1);
+
 	}
 
 	// MÉTODOS DE TESTE

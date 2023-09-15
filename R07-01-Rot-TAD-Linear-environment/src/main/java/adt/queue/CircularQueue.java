@@ -7,6 +7,7 @@ public class CircularQueue<T> implements Queue<T> {
 	private int head;
 	private int elements;
 
+	@SuppressWarnings("unchecked")
 	public CircularQueue(int size) {
 		array = (T[]) new Object[size];
 		head = -1;
