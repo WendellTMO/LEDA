@@ -11,7 +11,7 @@ public class SingleLinkedListImpl<T> implements LinkedList<T> {
 	@Override
 	public boolean isEmpty() {
 		boolean res = false;
-		if (head.isNIL()) {
+		if (getHead().isNIL()) {
 			res = true;
 		}
 		return res;
@@ -20,7 +20,7 @@ public class SingleLinkedListImpl<T> implements LinkedList<T> {
 	@Override
 	public int size() {
 		int size = 0;
-		SingleLinkedListNode<T> auxHead = head;
+		SingleLinkedListNode<T> auxHead = getHead();
 		while(!auxHead.isNIL()) {
 			size++;
 			auxHead = auxHead.getNext();
@@ -31,12 +31,13 @@ public class SingleLinkedListImpl<T> implements LinkedList<T> {
 	@Override
 	public T search(T element) {
 		T res = null;
-		SingleLinkedListNode<T> auxHead = head;
-		while(auxHead.getData() != element && !auxHead.isNIL()) {
+		SingleLinkedListNode<T> auxHead = getHead();
+		
+		while(!auxHead.isNIL() && !auxHead.getData().equals(element)) {
 			auxHead = auxHead.getNext();
 		}
 
-		if (auxHead.getData() == element) {
+		if (!auxHead.isNIL()) {
 			res = auxHead.getData();
 		}
 
@@ -46,30 +47,30 @@ public class SingleLinkedListImpl<T> implements LinkedList<T> {
 	@Override
 	public void insert(T element) {
 		if(element != null) {
-			SingleLinkedListNode<T> auxHead = head;
+			SingleLinkedListNode<T> auxHead = getHead();
 		
-			if (head.isNIL()) {
+			if (getHead().isNIL()) {
 				SingleLinkedListNode<T> newHead = new SingleLinkedListNode<T>(element, auxHead);
-				newHead.setNext(head);
-				head = newHead;
+				newHead.setNext(getHead());
+				setHead(newHead);
 		
 			} else {
 				while(!auxHead.isNIL()) {
 					auxHead = auxHead.getNext();
 				}
 				auxHead.setData(element);
-				auxHead.setNext(new SingleLinkedListNode<>());
+				auxHead.setNext(new SingleLinkedListNode<T>());
 			}
 		}
 	}
 
 	@Override
 	public void remove(T element) {
-		if (head.getData() == element) {
-			head = head.getNext();
+		if (getHead().getData().equals(element)) {
+			setHead(getHead().getNext());
 		} else {
-			SingleLinkedListNode<T> auxHead = head;
-			while (auxHead.getData() != element && !auxHead.isNIL()) {
+			SingleLinkedListNode<T> auxHead = getHead();
+			while (!auxHead.getData().equals(element) && !auxHead.isNIL()) {
 				auxHead = auxHead.getNext();
 			}
 			if (!auxHead.isNIL()) {
@@ -80,10 +81,10 @@ public class SingleLinkedListImpl<T> implements LinkedList<T> {
 
 	}
 
-	//TODO verificar bagulho se é NIL ou não
+	//TODO verificar bagulho se é NIL ou 
 	@Override
 	public T[] toArray() {
-		SingleLinkedListNode<T> auxHead = head;
+		SingleLinkedListNode<T> auxHead = getHead();
 		int size = size();
 		T[] array = (T[]) new Object[size];
 

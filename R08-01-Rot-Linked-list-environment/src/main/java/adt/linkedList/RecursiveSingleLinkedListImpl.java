@@ -9,41 +9,79 @@ public class RecursiveSingleLinkedListImpl<T> implements LinkedList<T> {
 
 	}
 
-
 	@Override
 	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		boolean res = false;
+		if (getData() == null) {
+			res = true;
+		}
+		return res;
 	}
 
 	@Override
 	public int size() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		int res = 0;
+		if (isEmpty()) {
+			res = 0;
+		} else {
+			res = 1 + getNext().size();
+		}
+		return res;
 	}
 
 	@Override
 	public T search(T element) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		T res = null;
+		if (!isEmpty()) {
+			if (getData().equals(element)) {
+				res = getData();
+			} else {
+				res = getNext().search(element);
+			}
+		}
+		return res;
 	}
 
 	@Override
 	public void insert(T element) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		if (element != null) {
+			if (isEmpty()) {
+				setData(element);
+				setNext(new RecursiveSingleLinkedListImpl<T>());
+			} else {
+				getNext().insert(element);
+			}
+		}
 	}
 
 	@Override
 	public void remove(T element) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		if (!isEmpty()) {
+			if(getData().equals(element)) {
+				setData(getNext().getData());
+				setNext(getNext().getNext());
+			} else {
+				getNext().remove(element);
+			}
+		}
+
 	}
 
 	@Override
 	public T[] toArray() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		int size = size();
+		T[] result = (T[]) new Object[size];
+		toArrayAuxiliar(result, 0);
+
+		return result;
+	}
+
+	private void toArrayAuxiliar(Object[] array, int i) {
+		if (!isEmpty()) {
+			array[i] = getData();
+			getNext().toArrayAuxiliar(array, i + 1);
+		}
+
 	}
 
 	public T getData() {
