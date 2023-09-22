@@ -51,7 +51,7 @@ public class SingleLinkedListImpl<T> implements LinkedList<T> {
 		
 			if (getHead().isNIL()) {
 				SingleLinkedListNode<T> newHead = new SingleLinkedListNode<T>(element, auxHead);
-				newHead.setNext(getHead());
+				newHead.setNext(new SingleLinkedListNode<T>());
 				setHead(newHead);
 		
 			} else {
@@ -66,16 +66,18 @@ public class SingleLinkedListImpl<T> implements LinkedList<T> {
 
 	@Override
 	public void remove(T element) {
-		if (getHead().getData().equals(element)) {
-			setHead(getHead().getNext());
-		} else {
-			SingleLinkedListNode<T> auxHead = getHead();
-			while (!auxHead.getData().equals(element) && !auxHead.isNIL()) {
-				auxHead = auxHead.getNext();
-			}
-			if (!auxHead.isNIL()) {
-				auxHead.setData(auxHead.getNext().getData());
-				auxHead.setNext(auxHead.getNext().getNext());
+		if (element != null) {
+			if (getHead().getData().equals(element)) {
+				setHead(getHead().getNext());
+			} else {
+				SingleLinkedListNode<T> auxHead = getHead();
+				while (!auxHead.isNIL() && !auxHead.getData().equals(element)) {
+					auxHead = auxHead.getNext();
+				}
+				if (!auxHead.isNIL()) {
+					auxHead.setData(auxHead.getNext().getData());
+					auxHead.setNext(auxHead.getNext().getNext());
+				}
 			}
 		}
 
