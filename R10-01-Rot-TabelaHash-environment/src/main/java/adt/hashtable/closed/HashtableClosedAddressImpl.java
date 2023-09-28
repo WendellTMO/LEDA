@@ -4,6 +4,7 @@ import java.util.LinkedList;
 
 import adt.hashtable.Hashtable;
 import adt.hashtable.hashfunction.HashFunction;
+import adt.hashtable.hashfunction.HashFunctionClosedAddress;
 import adt.hashtable.hashfunction.HashFunctionClosedAddressMethod;
 import adt.hashtable.hashfunction.HashFunctionDivisionMethod;
 import adt.hashtable.hashfunction.HashFunctionFactory;
@@ -59,12 +60,10 @@ public class HashtableClosedAddressImpl<T> extends
 	 */
 	int getPrimeAbove(int number) {
 		int res = -1;
-		int temp_number = number;
-		if (Util.isPrime(temp_number)) {
-			res = number;
-		} else {
-			res = getPrimeAbove(number++);
+		while (!Util.isPrime(number)) {
+			number++;
 		}
+		res = number;
 
 		return res;
 	}
@@ -72,7 +71,7 @@ public class HashtableClosedAddressImpl<T> extends
 	@Override
 	public void insert(T element) {
 		if (element != null) {
-			int key = ((HashFunctionDivisionMethod<T>) getHashFunction()).hash(element);
+			int key = ((HashFunctionClosedAddress<T>) getHashFunction()).hash(element);
 			if (table[key] == null) {
 				table[key] = new LinkedList<T>();
 			} else {
@@ -86,7 +85,7 @@ public class HashtableClosedAddressImpl<T> extends
 	@Override
 	public void remove(T element) {
 		if (element != null) {
-			int key = ((HashFunctionDivisionMethod<T>) getHashFunction()).hash(element);
+			int key = ((HashFunctionClosedAddress<T>) getHashFunction()).hash(element);
 			if (((LinkedList<T>) table[key]).contains(element)) {
 
 				((LinkedList<T>) table[key]).remove(element);
@@ -102,7 +101,7 @@ public class HashtableClosedAddressImpl<T> extends
 	public T search(T element) {
 		T res = null;
 		if (element != null) {
-			int key = ((HashFunctionDivisionMethod<T>) getHashFunction()).hash(element);
+			int key = ((HashFunctionClosedAddress<T>) getHashFunction()).hash(element);
 			if (table[key] != null) {
 				if ( ((LinkedList<T>) table[key]).contains(element) ) {
 					res = element;
@@ -117,7 +116,7 @@ public class HashtableClosedAddressImpl<T> extends
 	public int indexOf(T element) {
 		int index = -1;
 		if (element != null) {
-			int key = ((HashFunctionDivisionMethod<T>) getHashFunction()).hash(element);
+			int key = ((HashFunctionClosedAddress<T>) getHashFunction()).hash(element);
 			T search = search(element);
 			if (search == element) {
 				index = key;
