@@ -15,13 +15,15 @@ public class HashtableOpenAddressLinearProbingImpl<T extends Storable> extends
 
 	@Override
 	public void insert(T element) {
-		
+		if (isFull()) {
+			throw new HashtableOverflowException();
+		}
 		if (element != null) {
 			int probing = 0;
 			int key = ((HashFunctionLinearProbing<T>) getHashFunction()).hash(element, probing);
 			boolean insert = false;
-
-			while (probing <= table.length && insert == false) {
+	
+			while (probing < table.length && insert == false) {
 				if (table[key] == null || table[key].equals(new DELETED())) {
 					table[key] = element;
 					insert = true;
@@ -43,7 +45,7 @@ public class HashtableOpenAddressLinearProbingImpl<T extends Storable> extends
 			int key = ((HashFunctionLinearProbing<T>) getHashFunction()).hash(element, probing);
 			boolean remove = false;
 			
-			while (probing <= table.length && remove == false) {
+			while (probing < table.length && remove == false) {
 				if (table[key] == null) {
 					remove = true;
 				} else if (table[key].equals(element)) {
@@ -68,7 +70,7 @@ public class HashtableOpenAddressLinearProbingImpl<T extends Storable> extends
 			int key = ((HashFunctionLinearProbing<T>) getHashFunction()).hash(element, probing);
 			boolean search = false;
 
-			while (probing <= table.length  && search == false) {
+			while (probing < table.length && search == false) {
 				if (table[key] == null) {
 					search = true;
 				} else if (table[key].equals(element)) {
@@ -91,7 +93,7 @@ public class HashtableOpenAddressLinearProbingImpl<T extends Storable> extends
 			int key = ((HashFunctionLinearProbing<T>) getHashFunction()).hash(element, probing);
 			boolean find = false;
 
-			while (probing <= table.length && find == false) {
+			while (probing < table.length && find == false) {
 				if (table[key] != null && table[key].equals(element)) {
 					find = true;
 					res = key;

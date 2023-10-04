@@ -90,7 +90,7 @@ public class HashtableClosedAddressImpl<T> extends
 
 				((LinkedList<T>) table[key]).remove(element);
 				elements--;
-				if ( ((LinkedList<T>) table[key]).isEmpty() ) {
+				if (((LinkedList<T>) table[key]).isEmpty()) {
 					table[key] = null;
 				}
 			}
@@ -115,6 +115,7 @@ public class HashtableClosedAddressImpl<T> extends
 	@Override
 	public int indexOf(T element) {
 		int index = -1;
+		
 		if (element != null) {
 			int key = ((HashFunctionClosedAddress<T>) getHashFunction()).hash(element);
 			T search = search(element);
@@ -122,6 +123,7 @@ public class HashtableClosedAddressImpl<T> extends
 				index = key;
 			}
 		}
+		
 		return index;
 	}
 
