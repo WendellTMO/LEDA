@@ -33,21 +33,39 @@ public class QueueUsingStack<T> implements Queue<T> {
 	public T dequeue() throws QueueUnderflowException {
 		if (isEmpty()) {
 			throw new QueueUnderflowException();
+		} else {
+
+			moveToStack(stack1, stack2);
+		
+			T res = null;
+			try {
+				res = stack2.pop();
+			} catch (StackUnderflowException e) {
+				throw new QueueUnderflowException();
+		
+			}
+			moveToStack(stack2, stack1);
+		
+			return res;
+		}
+	}
+
+	private void moveToStack(Stack<T> stackOriginal, Stack<T> stackTarget) {
+		while (!stackOriginal.isEmpty()) {
+			T temp = null;
+			try {
+				temp = stackOriginal.pop();
+			} catch (StackUnderflowException e) {
+				e.printStackTrace();
+			}
+
+			try {
+				stackTarget.push(temp);
+			} catch (StackOverflowException e) {
+				e.printStackTrace();
+			}
 		}
 
-		moveToStack2();
-		
-		T res = null;
-		try {
-			res = stack2.pop();
-		} catch (StackUnderflowException e) {
-			throw new QueueUnderflowException();
-		
-		}
-		moveToStack1();
-		
-		return res;
-		
 	}
 
 	@Override

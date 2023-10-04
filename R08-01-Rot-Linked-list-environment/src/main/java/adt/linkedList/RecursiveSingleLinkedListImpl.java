@@ -84,6 +84,20 @@ public class RecursiveSingleLinkedListImpl<T> implements LinkedList<T> {
 
 	}
 
+	public void removeLast() {
+		if (!isEmpty()) {
+			if (getNext().isEmpty()) {
+				setData(null);
+			} else {
+				if (getNext().getNext().isEmpty()) {
+					setNext(new RecursiveSingleLinkedListImpl<T>());
+				} else {
+					getNext().removeLast();
+				}
+			}
+		}
+	}
+
 	public T getData() {
 		return data;
 	}
@@ -98,6 +112,12 @@ public class RecursiveSingleLinkedListImpl<T> implements LinkedList<T> {
 
 	public void setNext(RecursiveSingleLinkedListImpl<T> next) {
 		this.next = next;
+	}
+
+	@Override
+	public void swap(T i, T j) {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'swap'");
 	}
 
 }

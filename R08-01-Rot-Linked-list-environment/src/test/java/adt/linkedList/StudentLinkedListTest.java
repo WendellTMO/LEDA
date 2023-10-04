@@ -84,4 +84,15 @@ public class StudentLinkedListTest {
 		Assert.assertArrayEquals(new Integer[] {}, lista2.toArray());
 		Assert.assertArrayEquals(new Integer[] { 3, 2, 1 }, lista1.toArray());
 	}
+
+	@Test
+	public void testQUero() {
+		lista1.swap(3, 1);
+		Assert.assertArrayEquals(new Integer[] { 1,2,3 }, lista1.toArray());
+		
+		lista1.swap(2, 3);
+		Assert.assertArrayEquals(new Integer[] { 1,3,2 }, lista1.toArray());
+
+
+	}
 }

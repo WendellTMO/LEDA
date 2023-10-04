@@ -50,4 +50,8 @@ public interface LinkedList<T> {
 	 *         they appear
 	 */
 	public T[] toArray();
+
+    public void removeLast();
+
+	public void swap(T i, T j);
 }

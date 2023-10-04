@@ -15,26 +15,93 @@ public class HashtableOpenAddressLinearProbingImpl<T extends Storable> extends
 
 	@Override
 	public void insert(T element) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		
+		if (element != null) {
+			int probing = 0;
+			int key = ((HashFunctionLinearProbing<T>) getHashFunction()).hash(element, probing);
+			boolean insert = false;
+
+			while (probing <= table.length && insert == false) {
+				if (table[key] == null || table[key].equals(new DELETED())) {
+					table[key] = element;
+					insert = true;
+					elements++;
+				} else {
+					probing++;
+					key = ((HashFunctionLinearProbing<T>) getHashFunction()).hash(element, probing);
+					COLLISIONS++;
+				}
+			}
+
+		}
 	}
 
 	@Override
 	public void remove(T element) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		if (element != null) {
+			int probing = 0;
+			int key = ((HashFunctionLinearProbing<T>) getHashFunction()).hash(element, probing);
+			boolean remove = false;
+			
+			while (probing <= table.length && remove == false) {
+				if (table[key] == null) {
+					remove = true;
+				} else if (table[key].equals(element)) {
+					table[key] = new DELETED();
+					elements--;
+					remove = true;
+				} else {
+					probing++;
+					key = ((HashFunctionLinearProbing<T>) getHashFunction()).hash(element, probing);
+				}
+			}
+
+		}
+
 	}
 
 	@Override
 	public T search(T element) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		T res = null;
+		if (element != null) {
+			int probing = 0;
+			int key = ((HashFunctionLinearProbing<T>) getHashFunction()).hash(element, probing);
+			boolean search = false;
+
+			while (probing <= table.length  && search == false) {
+				if (table[key] == null) {
+					search = true;
+				} else if (table[key].equals(element)) {
+					res = element;
+					search = true;
+				} else {
+					probing++;
+					key = ((HashFunctionLinearProbing<T>) getHashFunction()).hash(element, probing);
+				}
+			}
+		}
+		return res;
 	}
 
 	@Override
 	public int indexOf(T element) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		int res = -1;
+		if (element != null) {
+			int probing = 0;
+			int key = ((HashFunctionLinearProbing<T>) getHashFunction()).hash(element, probing);
+			boolean find = false;
+
+			while (probing <= table.length && find == false) {
+				if (table[key] != null && table[key].equals(element)) {
+					find = true;
+					res = key;
+				} else {
+					probing++;
+					key = ((HashFunctionLinearProbing<T>) getHashFunction()).hash(element, probing);
+				}
+			}
+		}
+		return res;
 	}
 
 }

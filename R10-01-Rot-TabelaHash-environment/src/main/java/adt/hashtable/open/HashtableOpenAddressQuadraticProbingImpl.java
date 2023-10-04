@@ -15,25 +15,99 @@ public class HashtableOpenAddressQuadraticProbingImpl<T extends Storable>
 
 	@Override
 	public void insert(T element) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+
+		if (element != null) {
+			int probing = 0;
+			int key = ((HashFunctionQuadraticProbing<T>) getHashFunction()).hash(element, probing);
+			boolean stop = false;
+			
+			while (probing <= table.length && stop == false) {
+				if (table[key] == null || table[key].equals(new DELETED())) {
+					table[key] = element;
+					elements++;
+					stop = true;
+				} else {
+					probing++;
+					key = ((HashFunctionQuadraticProbing<T>) getHashFunction()).hash(element, probing);
+					COLLISIONS++;
+
+				}
+
+			}
+
+		}
 	}
 
 	@Override
 	public void remove(T element) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		if (element != null) {
+			int probing = 0;
+			int key = ((HashFunctionQuadraticProbing<T>) getHashFunction()).hash(element, probing);
+			boolean stop = false;
+
+			while (probing <= table.length && stop == false) {
+				if (table[key] == null) {
+					stop = true;
+
+				} else if (table[key].equals(element)) {
+					table[key] = new DELETED();
+					stop = true;
+					elements--;
+				} else {
+					probing++;
+					key = ((HashFunctionQuadraticProbing<T>) getHashFunction()).hash(element, probing);
+				}
+			}
+		}
 	}
 
 	@Override
 	public T search(T element) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		T res = null;
+		if (element != null) {
+			int probing = 0;
+			int key = ((HashFunctionQuadraticProbing<T>) getHashFunction()).hash(element, probing);
+			boolean stop = false; 
+
+			while (probing <= table.length && stop == false) {
+				if (table[key] == null) {
+					stop = true;
+				} else if (table[key].equals(element)) {
+					res = element;
+					stop = true;
+				} else {
+					probing++;
+					key = ((HashFunctionQuadraticProbing<T>) getHashFunction()).hash(element, probing);
+				}
+			}
+
+		}
+
+		return res;
+		
 	}
 
 	@Override
 	public int indexOf(T element) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		int res = -1;
+		if (element != null) {
+			int probing = 0;
+			int key = ((HashFunctionQuadraticProbing<T>) getHashFunction()).hash(element, probing);
+			boolean stop = false;
+
+			while (probing <= table.length && stop == false) {
+				if (table[key] == null) {
+					stop = true;
+				} else if (table[key].equals(element)) {
+					res = key;
+					stop = true;
+				} else {
+					probing++;
+					key = ((HashFunctionQuadraticProbing<T>) getHashFunction()).hash(element, probing);
+				}
+			}
+
+		}
+		return res;
 	}
 }
