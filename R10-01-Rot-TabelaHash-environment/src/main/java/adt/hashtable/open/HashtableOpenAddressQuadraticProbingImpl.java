@@ -25,7 +25,7 @@ public class HashtableOpenAddressQuadraticProbingImpl<T extends Storable>
 			boolean stop = false;
 			
 			while (probing <= table.length && stop == false) {
-				if (table[key] == null || table[key].equals(deletedElement)) {
+				if (table[key] == null || table[key].equals(new DELETED())) {
 					table[key] = element;
 					elements++;
 					stop = true;
@@ -33,9 +33,7 @@ public class HashtableOpenAddressQuadraticProbingImpl<T extends Storable>
 					probing++;
 					key = ((HashFunctionQuadraticProbing<T>) getHashFunction()).hash(element, probing);
 					COLLISIONS++;
-
 				}
-
 			}
 
 		}
@@ -47,19 +45,22 @@ public class HashtableOpenAddressQuadraticProbingImpl<T extends Storable>
 			int probing = 0;
 			int key = ((HashFunctionQuadraticProbing<T>) getHashFunction()).hash(element, probing);
 			boolean stop = false;
-
-			while (probing <= table.length && stop == false) {
-				if (table[key] == null) {
-					stop = true;
-
-				} else if (table[key].equals(element)) {
-					table[key] = new DELETED();
-					stop = true;
-					elements--;
-				} else {
-					probing++;
-					key = ((HashFunctionQuadraticProbing<T>) getHashFunction()).hash(element, probing);
+			
+			try {
+				while (stop == false) {
+					if (table[key] == null) {
+						stop = true;
+					} else if (table[key].equals(element)) {
+						table[key] = new DELETED();
+						stop = true;
+						elements--;
+					} else {
+						probing++;
+						key = ((HashFunctionQuadraticProbing<T>) getHashFunction()).hash(element, probing);
+					}
 				}
+			} catch (RuntimeException e) {
+				throw new HashtableOverflowException();
 			}
 		}
 	}
@@ -72,7 +73,7 @@ public class HashtableOpenAddressQuadraticProbingImpl<T extends Storable>
 			int key = ((HashFunctionQuadraticProbing<T>) getHashFunction()).hash(element, probing);
 			boolean stop = false; 
 
-			while (probing <= table.length && stop == false) {
+			while (probing < table.length && stop == false) {
 				if (table[key] == null) {
 					stop = true;
 				} else if (table[key].equals(element)) {
@@ -98,7 +99,7 @@ public class HashtableOpenAddressQuadraticProbingImpl<T extends Storable>
 			int key = ((HashFunctionQuadraticProbing<T>) getHashFunction()).hash(element, probing);
 			boolean stop = false;
 
-			while (probing <= table.length && stop == false) {
+			while (probing < table.length && stop == false) {
 				if (table[key] == null) {
 					stop = true;
 				} else if (table[key].equals(element)) {

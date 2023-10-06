@@ -105,6 +105,7 @@ public class StudentTestHashtableOpenAddressLinearProbing {
 		table1.insert(new HashtableElement(10));
 		assertTrue(table1.isFull());
 
+
 		assertFalse(table2.isFull());
 	}
 
