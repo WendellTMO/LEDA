@@ -68,9 +68,10 @@ public class HashtableClosedAddressImpl<T> extends
 		return res;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public void insert(T element) {
-		if (element != null) {
+		if (element != null && search(element) != element) {
 			int key = ((HashFunctionClosedAddress<T>) getHashFunction()).hash(element);
 			if (table[key] == null) {
 				table[key] = new LinkedList<T>();
@@ -82,6 +83,7 @@ public class HashtableClosedAddressImpl<T> extends
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public void remove(T element) {
 		if (element != null) {
@@ -96,7 +98,8 @@ public class HashtableClosedAddressImpl<T> extends
 			}
 		}
 	}				
-
+	
+	@SuppressWarnings("unchecked")
 	@Override
 	public T search(T element) {
 		T res = null;

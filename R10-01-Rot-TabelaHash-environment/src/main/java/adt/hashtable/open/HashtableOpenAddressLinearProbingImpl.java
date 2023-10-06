@@ -15,14 +15,17 @@ public class HashtableOpenAddressLinearProbingImpl<T extends Storable> extends
 
 	@Override
 	public void insert(T element) {
+		if (isFull()) {
+			throw new HashtableOverflowException();
+		}
 		
-		if (element != null) {
+		if (element != null && search(element) != element) {
 			int probing = 0;
 			int key = ((HashFunctionLinearProbing<T>) getHashFunction()).hash(element, probing);
 			boolean insert = false;
 
 			while (probing <= table.length && insert == false) {
-				if (table[key] == null || table[key].equals(new DELETED())) {
+				if (table[key] == null || table[key].equals(deletedElement)) {
 					table[key] = element;
 					insert = true;
 					elements++;

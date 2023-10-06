@@ -14,6 +14,8 @@ public class StudentTestHashtableOpenAddressLinearProbing {
 
 	protected AbstractHashtableOpenAddress<HashtableElement> table1;
 	protected AbstractHashtableOpenAddress<HashtableElement> table2;
+	protected AbstractHashtableOpenAddress<HashtableElement> table3;
+	protected AbstractHashtableOpenAddress<HashtableElement> table4;
 
 	protected final int PROPOSED_SIZE = 10;
 
@@ -29,6 +31,10 @@ public class StudentTestHashtableOpenAddressLinearProbing {
 
 		table2 = new HashtableOpenAddressLinearProbingImpl<HashtableElement>(
 				PROPOSED_SIZE, HashFunctionClosedAddressMethod.DIVISION);
+
+		table3 = new HashtableOpenAddressLinearProbingImpl<HashtableElement>(PROPOSED_SIZE, HashFunctionClosedAddressMethod.DIVISION);
+		table4 = new HashtableOpenAddressLinearProbingImpl<HashtableElement>(4, HashFunctionClosedAddressMethod.DIVISION);
+
 	}
 
 	@Test
@@ -105,6 +111,32 @@ public class StudentTestHashtableOpenAddressLinearProbing {
 	@Test
 	public void testSize() {
 		assertEquals(4, table1.size());
+	}
+
+	@Test
+	public void test01() {
+		assertFalse(table3.isFull());
+		assertTrue(table3.isEmpty());
+		table3.insert(new HashtableElement(1));
+		table3.insert(new HashtableElement(11));
+		table3.insert(new HashtableElement(3));
+		assertEquals(3, table3.size());
+
+		assertEquals(1, table3.indexOf(new HashtableElement(1)));
+		assertEquals(2, table3.indexOf(new HashtableElement(11)));
+		assertEquals(3, table3.indexOf(new HashtableElement(3)));
+
+		table3.remove(new HashtableElement(11));
+		assertEquals(2, table3.size());
+		table3.insert(new HashtableElement(21));
+		assertEquals(2, table3.indexOf(new HashtableElement(21)));
+	}
+
+	@Test
+	public void test02() {
+		table4.insert(new HashtableElement(1));
+		table4.insert(new HashtableElement(1));
+		assertEquals(1, table4.size());
 	}
 
 }
