@@ -24,7 +24,7 @@ public class HashtableOpenAddressQuadraticProbingImpl<T extends Storable>
 			int key = ((HashFunctionQuadraticProbing<T>) getHashFunction()).hash(element, probing);
 			boolean stop = false;
 			
-			while (probing <= table.length && stop == false) {
+			while (probing < table.length && stop == false) {
 				if (table[key] == null || table[key].equals(new DELETED())) {
 					table[key] = element;
 					elements++;

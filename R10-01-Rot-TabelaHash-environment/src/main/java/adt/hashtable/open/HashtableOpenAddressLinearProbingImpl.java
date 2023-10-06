@@ -25,7 +25,7 @@ public class HashtableOpenAddressLinearProbingImpl<T extends Storable> extends
 			int key = ((HashFunctionLinearProbing<T>) getHashFunction()).hash(element, probing);
 			boolean insert = false;
 
-			while (probing <= table.length && insert == false) {
+			while (probing < table.length && insert == false) {
 				if (table[key] == null || table[key].equals(new DELETED())) {
 					table[key] = element;
 					insert = true;
