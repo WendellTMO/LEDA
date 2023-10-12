@@ -5,12 +5,12 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import adt.bst.BSTImpl;
 import adt.bt.BTNode;
 
 public class StudentBSTTest {
 
 	private BSTImpl<Integer> tree;
+	private BSTImpl<Integer> tree1;
 	private BTNode<Integer> NIL = new BTNode<Integer>();
 
 	private void fillTree() {
@@ -23,6 +23,7 @@ public class StudentBSTTest {
 	@Before
 	public void setUp() {
 		tree = new BSTImpl<>();
+		tree1 = new BSTImpl<>();
 	}
 
 	@Test
@@ -101,9 +102,21 @@ public class StudentBSTTest {
 		int size = 12;
 		assertEquals(size, tree.size());
 
+		tree1.insert(new Integer(1));
+		tree1.insert(new Integer(0));
+		tree1.insert(new Integer(2));
+		tree1.remove(tree1.getRoot().getData());
+		assertEquals(2, tree1.size());
+		tree1.remove(tree1.getRoot().getData());
+		assertEquals(1, tree1.size());
+		tree1.remove(tree1.getRoot().getData());
+		tree1.insert(new Integer(3));
+		assertEquals(1, tree1.size());
+
+
 		while (!tree.isEmpty()) {
-			tree.remove(tree.getRoot().getData());
-			assertEquals(--size, tree.size());
+		 	tree.remove(tree.getRoot().getData());	
+		 	assertEquals(--size, tree.size());
 		}
 	}
 
