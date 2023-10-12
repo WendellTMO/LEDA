@@ -10,20 +10,71 @@ public class SimpleBSTManipulationImpl<T extends Comparable<T>> implements Simpl
 
 	@Override
 	public boolean equals(BST<T> tree1, BST<T> tree2) {
-		// TODO Implement this method
-		throw new UnsupportedOperationException("Not implemented yet!");
+		boolean res = false;
+		if (tree1 != null && tree2 != null) {
+			res = equals((BSTNode<T>) tree1.getRoot(), (BSTNode<T>) tree2.getRoot());
+		}
+		return res;
+	}
+
+	private boolean equals(BSTNode<T> tree1, BSTNode<T> tree2) {
+		boolean res = false;
+		if (!tree1.isEmpty() && !tree2.isEmpty()) {
+			res = tree1.equals(tree2) && 
+					equals((BSTNode<T>) tree1.getLeft(), (BSTNode<T>) tree2.getLeft()) && 
+					equals((BSTNode<T>) tree1.getRight(), (BSTNode<T>) tree2.getRight());
+		} else {
+			res = tree1.equals(tree2);
+		}
+
+		return res;
 	}
 
 	@Override
 	public boolean isSimilar(BST<T> tree1, BST<T> tree2) {
-		// TODO Implement this method
-		throw new UnsupportedOperationException("Not implemented yet!");
+		boolean res = false;
+		if (tree1 != null && tree2 != null) {
+			res = isSimilar((BSTNode<T>) tree1.getRoot(), (BSTNode<T>) tree2.getRoot());
+		}
+		return res;
+	}
+
+	private boolean isSimilar(BSTNode<T> tree1, BSTNode<T> tree2) {
+		boolean res = false;
+		if (tree1.isEmpty() && tree2.isEmpty()) {
+			res = true;
+		} else if (!tree1.isEmpty() && !tree2.isEmpty()) {
+			res = isSimilar((BSTNode<T>) tree1.getLeft(), (BSTNode<T>) tree2.getLeft()) &&
+				  isSimilar((BSTNode<T>) tree1.getRight(), (BSTNode<T>) tree2.getRight());
+		}
+		return res;
 	}
 
 	@Override
 	public T orderStatistic(BST<T> tree, int k) {
-		// TODO Implement this method
-		throw new UnsupportedOperationException("Not implemented yet!");
+		T res = null;
+		if (tree != null && k > 0 && k < tree.size() + 1) {
+			BSTNode<T> getLeft = (BSTNode<T>) tree.getRoot();
+
+			res = recursiveOrderStatistic(getLeft, 0, k);
+		}
+		return res;
+	}
+
+	@SuppressWarnings("unchecked")
+	private T recursiveOrderStatistic(BSTNode<T> minimum, int i, int k) {
+		T res = null;
+		if (i == k && !minimum.isEmpty()) {
+			res = minimum.getData();
+		} else if (minimum.getParent() != null && !minimum.getParent().getRight().isEmpty()) {
+			res = recursiveOrderStatistic(((BST<T>) minimum.getParent().getRight()).minimum(), i++, k);
+		} else if (minimum.getParent() != null && !minimum.getParent().getRight().isEmpty()) {
+			res = recursiveOrderStatistic((BSTNode<T>) (minimum.getParent().getRight()), i++, k);
+		} else if (minimum.getParent() == null && minimum.getRight().isEmpty()) {
+			res = recursiveOrderStatistic((BSTNode<T>) minimum.getRight(), i++, k);
+		}
+		
+		return res;
 	}
 
 }
