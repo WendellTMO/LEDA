@@ -1,7 +1,6 @@
 package adt.bst;
 
 import adt.bt.BTNode;
-import java.util.ArrayList;
 
 public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 
@@ -237,63 +236,55 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 		} 
 	}
 
-	@Override
-	@SuppressWarnings("unchecked")
 	public T[] preOrder() {
-		ArrayList<T> tempArray = new ArrayList<T>();
+    	T[] tempArray = (T[]) new Comparable[size()];
+    	int[] index = { 0 }; 
+    	recursivePreOrder(getRoot(), tempArray, index);
 
-		recursivePreOrder(getRoot(), tempArray);
-
-		T[] res = (T[]) tempArray.toArray(new Comparable[tempArray.size()]);
-
-		return res;
+    	return tempArray;
 	}
 
-	private void recursivePreOrder(BSTNode<T> node, ArrayList<T> array) {
-		if (!node.isEmpty()) {
-			array.add(node.getData());
-			recursivePreOrder((BSTNode<T>) node.getLeft(), array);
-			recursivePreOrder((BSTNode<T>) node.getRight(), array);
-		}
+	private void recursivePreOrder(BSTNode<T> node, T[] array, int[] index) {
+    	if (!node.isEmpty()) {
+        	array[index[0]++] = node.getData();
+        	recursivePreOrder((BSTNode<T>) node.getLeft(), array, index);
+        	recursivePreOrder((BSTNode<T>) node.getRight(), array, index);
+    	}
 	}
 
 	@Override
 	@SuppressWarnings("unchecked")
 	public T[] order() {
-		ArrayList<T> tempArray = new ArrayList<T>();
+    	T[] tempArray = (T[]) new Comparable[size()];
+    	int[] index = { 0 }; 
+		recursiveOrder(getRoot(), tempArray, index);
 
-		recursiveOrder(getRoot(), tempArray);
-
-		T[] res = (T[]) tempArray.toArray(new Comparable[tempArray.size()]);
-
-		return res;
+		return tempArray;
 	}
 
-	private void recursiveOrder(BSTNode<T> node, ArrayList<T> array) {
+	private void recursiveOrder(BSTNode<T> node, T[] array, int[] index) {
 		if (!node.isEmpty()) {
-			recursiveOrder((BSTNode<T>) node.getLeft(), array);
-			array.add(node.getData());
-			recursiveOrder((BSTNode<T>) node.getRight(), array);
+			recursiveOrder((BSTNode<T>) node.getLeft(), array, index);
+			array[index[0]++] = node.getData();
+			recursiveOrder((BSTNode<T>) node.getRight(), array, index);
 		}
 	}
 
 	@Override
 	@SuppressWarnings("unchecked")
 	public T[] postOrder() {
-		ArrayList<T> tempArray = new ArrayList<T>();
+    	T[] tempArray = (T[]) new Comparable[size()];
+    	int[] index = { 0 }; 
+		recursivePostOrder(getRoot(), tempArray, index);
 
-		recursivePostOrder(getRoot(), tempArray);
-
-		T[] res = (T[]) tempArray.toArray(new Comparable[tempArray.size()]);
-
-		return res;
+		return tempArray;
 	}
 
-	private void recursivePostOrder(BSTNode<T> node, ArrayList<T> array) {
+	private void recursivePostOrder(BSTNode<T> node, T[] array, int[] index) {
 		if (!node.isEmpty()) {
-			recursivePostOrder((BSTNode<T>) node.getLeft(), array);
-			recursivePostOrder((BSTNode<T>) node.getRight(), array);
-			array.add(node.getData());
+			recursivePostOrder((BSTNode<T>) node.getLeft(), array, index);
+			recursivePostOrder((BSTNode<T>) node.getRight(), array, index);
+			array[index[0]++] = node.getData();
 		}
 	} 
 

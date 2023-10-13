@@ -24,11 +24,13 @@ public class FloorCeilBSTImpl extends BSTImpl<Integer> implements FloorCeilBST {
 		Integer result = search;
 		
 		if (bstNode != null && !bstNode.isEmpty()) {
-			if (bstNode.getData().compareTo((int) target) <= 0) {	
+			if (bstNode.getData() < target) {	
 				search = bstNode.getData();
 				result = recursiveFloor((BSTNode<Integer>) bstNode.getRight(), search, target);
-			} else {
+			} else if (bstNode.getData() > target) {
 				result = recursiveFloor((BSTNode<Integer>) bstNode.getLeft(), search, target);
+			} else {
+				result = bstNode.getData();
 			}
 		}
 		return result;
@@ -47,11 +49,13 @@ public class FloorCeilBSTImpl extends BSTImpl<Integer> implements FloorCeilBST {
 	private Integer recursiveCeil(BSTNode<Integer> bstNode, Integer search, double target) {
 		Integer result = search;
 		if (bstNode != null && !bstNode.isEmpty()) {
-			if (bstNode.getData().compareTo((int) target) > 0) {
+			if (bstNode.getData() > target ) {
 				search = bstNode.getData();
 				result = recursiveCeil((BSTNode<Integer>) bstNode.getLeft(), search, target);
-			} else {
+			} else if (bstNode.getData() < target ) {
 				result = recursiveCeil((BSTNode<Integer>) bstNode.getRight(), search, target);
+			} else {
+				result = bstNode.getData();
 			}
 		}
 		return result;

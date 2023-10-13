@@ -119,8 +119,8 @@ public class SimpleBSTManipulationImplTest {
     @Test
     public void testOrderStatistic01() {
         BSTImpl<Integer> tree1 = fillTree(new Integer[]{ 6, 23, -34, 5, 9, 2, 0, 76, 12, 67, 232, -40 });
-        //assertEquals(new Integer(-40), impl.orderStatistic(tree1, 1));
-        //assertEquals(new Integer(-34), impl.orderStatistic(tree1, 2));
+        assertEquals(new Integer(-40), impl.orderStatistic(tree1, 1));
+        assertEquals(new Integer(-34), impl.orderStatistic(tree1, 2));
         assertEquals(new Integer(0), impl.orderStatistic(tree1, 3));
         assertEquals(new Integer(2), impl.orderStatistic(tree1, 4));
         assertEquals(new Integer(5), impl.orderStatistic(tree1, 5));

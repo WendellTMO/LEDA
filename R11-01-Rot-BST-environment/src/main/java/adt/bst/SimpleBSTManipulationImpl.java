@@ -53,18 +53,21 @@ public class SimpleBSTManipulationImpl<T extends Comparable<T>> implements Simpl
 	@Override
 	public T orderStatistic(BST<T> tree, int k) {
 		T res = null;
-		if (tree != null && k > 0 && k < tree.size() + 1) {
-			BSTNode<T> root = (BSTNode<T>) tree.getRoot();
-
-			res = recursiveOrderStatistic(root, 0, k).getData();
+		if (tree != null && !tree.isEmpty() && k > 0 && k < tree.size() + 1) {
+			res = recursiveStatistic(tree, tree.minimum(), --k).getData();
 		}
 		return res;
 	}
 
-	@SuppressWarnings("unchecked")
-	private BSTNode<T> recursiveOrderStatistic(BSTNode<T> minimum, int i, int k) {
+	private BSTNode<T> recursiveStatistic(BST<T> tree, BSTNode<T> node, int k) {
+		BSTNode<T> result = (BSTNode<T>) node;
 
-		return null;
+		if (k != 0) {
+			result = recursiveStatistic(tree, tree.sucessor(node.getData()), --k);
+		}
+
+		return result;
 	}
+
 
 }
