@@ -54,27 +54,17 @@ public class SimpleBSTManipulationImpl<T extends Comparable<T>> implements Simpl
 	public T orderStatistic(BST<T> tree, int k) {
 		T res = null;
 		if (tree != null && k > 0 && k < tree.size() + 1) {
-			BSTNode<T> getLeft = (BSTNode<T>) tree.getRoot();
+			BSTNode<T> root = (BSTNode<T>) tree.getRoot();
 
-			res = recursiveOrderStatistic(getLeft, 0, k);
+			res = recursiveOrderStatistic(root, 0, k).getData();
 		}
 		return res;
 	}
 
 	@SuppressWarnings("unchecked")
-	private T recursiveOrderStatistic(BSTNode<T> minimum, int i, int k) {
-		T res = null;
-		if (i == k && !minimum.isEmpty()) {
-			res = minimum.getData();
-		} else if (minimum.getParent() != null && !minimum.getParent().getRight().isEmpty()) {
-			res = recursiveOrderStatistic(((BST<T>) minimum.getParent().getRight()).minimum(), i++, k);
-		} else if (minimum.getParent() != null && !minimum.getParent().getRight().isEmpty()) {
-			res = recursiveOrderStatistic((BSTNode<T>) (minimum.getParent().getRight()), i++, k);
-		} else if (minimum.getParent() == null && minimum.getRight().isEmpty()) {
-			res = recursiveOrderStatistic((BSTNode<T>) minimum.getRight(), i++, k);
-		}
-		
-		return res;
+	private BSTNode<T> recursiveOrderStatistic(BSTNode<T> minimum, int i, int k) {
+
+		return null;
 	}
 
 }
