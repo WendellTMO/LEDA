@@ -12,8 +12,23 @@ public class FloorCeilHeapImpl extends HeapImpl<Integer> implements FloorCeilHea
 
 	@Override
 	public Integer floor(Integer[] array, double numero) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		buildHeap(array);
+		
+		return recursiveFloor(null, numero);
+	}
+
+	private Integer recursiveFloor(Integer search, double target) {
+		Integer res = search;
+
+		if (rootElement() <= target) {
+			search = extractRootElement();
+			res = recursiveFloor(search, target);
+		} else if (rootElement() > target) {
+			extractRootElement();
+			res = recursiveFloor(search, target);
+		}
+
+		return res;
 	}
 
 	@Override

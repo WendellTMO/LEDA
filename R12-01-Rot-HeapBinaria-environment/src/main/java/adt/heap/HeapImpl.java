@@ -122,8 +122,6 @@ public class HeapImpl<T extends Comparable<T>> implements Heap<T> {
 				i = parent(i);
 			}
 		}
-		int j = 9;
-
 	}
 
 	@Override
@@ -163,9 +161,9 @@ public class HeapImpl<T extends Comparable<T>> implements Heap<T> {
 		for (int i = 0; i < array.length; i++) {
 			res[i] = extractRootElement();
 		}
+		
 		//volto comparator para seu estado original
 		setComparator(original);
-		
 		return res;
 	} 
 
