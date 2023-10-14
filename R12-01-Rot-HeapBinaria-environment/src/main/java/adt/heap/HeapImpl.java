@@ -154,13 +154,18 @@ public class HeapImpl<T extends Comparable<T>> implements Heap<T> {
 	public T[] heapsort(T[] array) {
 		T[] res = (T[]) new Comparable[array.length];
 
+		//defino o comparator para MinHeap
 		Comparator<T> original = getComparator();
 		setComparator(new ComparatorMinHeap<T>());
+		
 		buildHeap(array);
+		
 		for (int i = 0; i < array.length; i++) {
 			res[i] = extractRootElement();
 		}
+		//volto comparator para seu estado original
 		setComparator(original);
+		
 		return res;
 	} 
 
