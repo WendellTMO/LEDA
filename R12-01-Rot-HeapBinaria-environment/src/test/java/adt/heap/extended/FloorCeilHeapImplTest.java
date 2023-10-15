@@ -25,6 +25,6 @@ public class FloorCeilHeapImplTest {
 
     @Test
     public void testFloor() {
-        //assertEquals(new Integer(1), impl.floor(array, 3));
+        assertEquals(new Integer(1), impl.floor(array, 3));
     }
 }
