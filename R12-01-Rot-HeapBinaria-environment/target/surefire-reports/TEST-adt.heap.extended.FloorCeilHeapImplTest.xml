@@ -12,7 +12,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="US"/>
     <property name="sun.boot.library.path" value="/usr/lib/jvm/java-17-openjdk-amd64/lib"/>
-    <property name="sun.java.command" value="/home/wendell/Desktop/p3/LEDA/R12-01-Rot-HeapBinaria-environment/target/surefire/surefirebooter-20231014124332029_3.jar /home/wendell/Desktop/p3/LEDA/R12-01-Rot-HeapBinaria-environment/target/surefire 2023-10-14T12-43-31_927-jvmRun1 surefire-20231014124332029_1tmp surefire_0-20231014124332029_2tmp"/>
+    <property name="sun.java.command" value="/home/wendell/Desktop/p3/LEDA/R12-01-Rot-HeapBinaria-environment/target/surefire/surefirebooter-20231014221427396_3.jar /home/wendell/Desktop/p3/LEDA/R12-01-Rot-HeapBinaria-environment/target/surefire 2023-10-14T22-14-27_092-jvmRun1 surefire-20231014221427396_1tmp surefire_0-20231014221427396_2tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="/home/wendell/Desktop/p3/LEDA/R12-01-Rot-HeapBinaria-environment/target/test-classes:/home/wendell/Desktop/p3/LEDA/R12-01-Rot-HeapBinaria-environment/target/classes:/home/wendell/.m2/repository/junit/junit/4.13.1/junit-4.13.1.jar:/home/wendell/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -27,7 +27,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="/home/wendell/Desktop/p3/LEDA/R12-01-Rot-HeapBinaria-environment/target/surefire/surefirebooter-20231014124332029_3.jar"/>
+    <property name="surefire.real.class.path" value="/home/wendell/Desktop/p3/LEDA/R12-01-Rot-HeapBinaria-environment/target/surefire/surefirebooter-20231014221427396_3.jar"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="17.0.8.1+1-Ubuntu-0ubuntu122.04"/>
     <property name="user.name" value="wendell"/>
