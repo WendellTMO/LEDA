@@ -12,7 +12,9 @@ public class FloorCeilHeapImpl extends HeapImpl<Integer> implements FloorCeilHea
 
 	@Override
 	public Integer floor(Integer[] array, double numero) {
-		buildHeap(array);
+		for (int i = 0; i < array.length; i++) {
+			insert(array[i]);
+		}
 		 
 		return recursiveFloor(null, numero);
 	}
@@ -42,7 +44,9 @@ public class FloorCeilHeapImpl extends HeapImpl<Integer> implements FloorCeilHea
 
 	@Override
 	public Integer ceil(Integer[] array, double numero) {
-		buildHeap(array);
+		for (int i = 0; i < array.length; i++) {
+			insert(array[i]);
+		}
 
 		return recursiveCeil(null, numero);
 	}
