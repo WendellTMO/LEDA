@@ -25,14 +25,10 @@ public class FloorCeilHeapImpl extends HeapImpl<Integer> implements FloorCeilHea
 		if (!isEmpty()) {
 			
 			Integer current = extractRootElement();
-			
 			if (current <= target) {
-				if (search == null) {
+				if (search == null || current > search) {
 					search = current;
-				} else if (current > search) {
-					search = current;
-				}
-				
+				} 
 				res = recursiveFloor(search, target);
 			} else {
 				res = recursiveFloor(search, target);
@@ -58,12 +54,10 @@ public class FloorCeilHeapImpl extends HeapImpl<Integer> implements FloorCeilHea
 			Integer current = extractRootElement();
 			
 			if (current >= target) {
-				if (search == null) {
+				if (search == null || current < search) {
 					search = current;
-				} else if (current < search) {
-					search = current;
-				}
-				
+				} 
+
 				res = recursiveCeil(search, target);
  			} else {
 				res = recursiveCeil(search, target);

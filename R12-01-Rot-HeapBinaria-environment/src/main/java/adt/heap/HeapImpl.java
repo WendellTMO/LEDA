@@ -138,35 +138,47 @@ public class HeapImpl<T extends Comparable<T>> implements Heap<T> {
 
 	@Override
 	public T extractRootElement() {
-		T res = heap[0];
-		Util.swap(heap, 0, index);
-		heap[index--] = null;
-		heapify(0);
-
+		T res = null;
+		if (!isEmpty()) {
+			res = heap[0];
+			Util.swap(heap, 0, index--);
+			heapify(0);
+		}
 		return res;
 	}
 
 	@Override
 	public T rootElement() {
-		return heap[0];
+		T res = null;
+		if (!isEmpty()) {
+			res = heap[0];
+		}
+		return res;
 	}
 
 	@Override
+	@SuppressWarnings("unchecked")
 	public T[] heapsort(T[] array) {
 		T[] res = (T[]) new Comparable[array.length];
+		
+		if (array != null) {
+			buildHeap(array);
+			
+			if (rootElement().compareTo(heap[index]) > 0) {
+				// Se é max heap, colono no array de trás pra frente
 
-		//defino o comparator para MinHeap
-		Comparator<T> original = getComparator();
-		setComparator(new ComparatorMinHeap<T>());
+				for (int i = index; i > -1; i--) {
+					res[i] = extractRootElement();
+				}
+			}  else {
+				// Se é min heap eu faço n extrações
+
+				for (int i = 0; i < array.length; i++) {
+					res[i] = extractRootElement();
+				}
+			}
 		
-		buildHeap(array);
-		
-		for (int i = 0; i < array.length; i++) {
-			res[i] = extractRootElement();
 		}
-		
-		//volto comparator para seu estado original
-		setComparator(original);
 		return res;
 	} 
 
