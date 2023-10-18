@@ -31,7 +31,7 @@ public class StudentMaxHeapTest {
 		assertEquals(8, heap.size());
 		assertFalse(heap.isEmpty());
 
-		//verifyHeap(new Integer[] { 99, 12, 82, 6, 34, 64, 58, 1 });
+		verifyHeap(new Integer[] { 99, 12, 82, 6, 34, 64, 58, 1 });
 		verifyHeap(new Integer[] { 99, 34, 82, 6, 12, 64, 58, 1 });
 	}
 
@@ -52,6 +52,22 @@ public class StudentMaxHeapTest {
 		assertFalse(heap.isEmpty());
 
 		verifyHeap(new Integer[] { 14, 8, 12, 7, 8, -5, -2, 3, -10, 0 });
+
+		int size = heap.size();
+		for (int i = 0; i < size; i++) {
+			heap.extractRootElement();
+		}
+		assertTrue(heap.isEmpty());
+
+		heap.insert(9);
+		heap.insert(16);
+		heap.insert(63);
+		heap.insert(45);
+		heap.insert(-1);
+		heap.insert(13);
+		heap.insert(21);
+		assertEquals(7, heap.size());
+		verifyHeap(new Integer[] { 16, 9, 45, -1, 13, 21, 63 });
 	}
 
 	@Test

@@ -127,8 +127,11 @@ public class HeapImpl<T extends Comparable<T>> implements Heap<T> {
 	@Override
 	public void buildHeap(T[] array) {
 		if (array != null) {
-			for (int i = 0; i < array.length; i++) {
-				insert(array[i]);
+			heap = array;
+			int tempSize = array.length;
+			index = tempSize - 1;
+			for (int i = tempSize / 2; i > -1; i--) {
+				heapify(i);
 			}
 		}
 	}
