@@ -235,7 +235,10 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 			recursiveRemove(sucessor);
 		} 
 	}
-
+	
+	//A questão do uso de int[] para o index foi pois não foi respondido no discord se podia utilizar arraylist
+	// assim eu utilizei o index dessa maneira para que não precisasse resetar toda vez que fosse chamado na recursão
+	@SuppressWarnings("unchecked")
 	public T[] preOrder() {
     	T[] tempArray = (T[]) new Comparable[size()];
     	int[] index = { 0 }; 
@@ -252,6 +255,8 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
     	}
 	}
 
+	//A questão do uso de int[] para o index foi pois não foi respondido no discord se podia utilizar arraylist
+	// assim eu utilizei o index dessa maneira para que não precisasse resetar toda vez que fosse chamado na recursão
 	@Override
 	@SuppressWarnings("unchecked")
 	public T[] order() {
@@ -270,6 +275,8 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 		}
 	}
 
+	//A questão do uso de int[] para o index foi pois não foi respondido no discord se podia utilizar arraylist
+	// assim eu utilizei o index dessa maneira para que não precisasse resetar toda vez que fosse chamado na recursão
 	@Override
 	@SuppressWarnings("unchecked")
 	public T[] postOrder() {
