@@ -84,26 +84,28 @@ public class HeapImpl<T extends Comparable<T>> implements Heap<T> {
 	 * para subir os elementos na heap.
 	 */
 	private void heapify(int position) {
-		int largest = position;
-		int left = left(position);
-		int right = right(position);
+		if (position > - 1) {
+			int largest = position;
+			int left = left(position);
+			int right = right(position);
 
-		if (left < size()
-			&& heap[left] != null 
-			&& getComparator().compare(heap[left], heap[largest]) > 0) {
+			if (left < size()
+				&& heap[left] != null 
+				&& getComparator().compare(heap[left], heap[largest]) > 0) {
 
-				largest = left;
-		} 
-		
-		if 	(right < size() 
-			&& heap[right] != null 
-			&& getComparator().compare(heap[right], heap[largest]) > 0) {
-				largest = right;
-		}
+					largest = left;
+			} 
+			
+			if 	(right < size() 
+				&& heap[right] != null 
+				&& getComparator().compare(heap[right], heap[largest]) > 0) {
+					largest = right;
+			}
 
-		if (largest != position) {
-			Util.swap(heap, position, largest);
-			heapify(largest);
+			if (largest != position) {
+				Util.swap(heap, position, largest);
+				heapify(largest);
+			}
 		}
 	}
 
@@ -140,7 +142,7 @@ public class HeapImpl<T extends Comparable<T>> implements Heap<T> {
 	public T extractRootElement() {
 		T res = null;
 		if (!isEmpty()) {
-			res = heap[0];
+			res = rootElement();
 			Util.swap(heap, 0, index--);
 			heapify(0);
 		}

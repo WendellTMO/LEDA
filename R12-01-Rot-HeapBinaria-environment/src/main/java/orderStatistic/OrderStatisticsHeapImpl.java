@@ -32,9 +32,9 @@ public class OrderStatisticsHeapImpl<T extends Comparable<T>> implements OrderSt
 		
 		if (k > 0 && k <= heap.size()) {
 			if (k == 1) {
-				res = heap.remove();
+				res = heap.poll();
 			} else {
-				heap.remove();
+				heap.poll();
 				res = recursiveOrderStatistics(heap, --k);
 			}
 		}
