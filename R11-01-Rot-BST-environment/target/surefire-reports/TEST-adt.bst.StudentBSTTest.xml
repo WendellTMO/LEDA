@@ -12,7 +12,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="US"/>
     <property name="sun.boot.library.path" value="/usr/lib/jvm/java-17-openjdk-amd64/lib"/>
-    <property name="sun.java.command" value="/home/wendell/Desktop/p3/LEDA/R11-01-Rot-BST-environment/target/surefire/surefirebooter-20231018213956063_3.jar /home/wendell/Desktop/p3/LEDA/R11-01-Rot-BST-environment/target/surefire 2023-10-18T21-39-56_005-jvmRun1 surefire-20231018213956063_1tmp surefire_0-20231018213956063_2tmp"/>
+    <property name="sun.java.command" value="/home/wendell/Desktop/p3/LEDA/R11-01-Rot-BST-environment/target/surefire/surefirebooter-20231018214319839_3.jar /home/wendell/Desktop/p3/LEDA/R11-01-Rot-BST-environment/target/surefire 2023-10-18T21-43-19_739-jvmRun1 surefire-20231018214319839_1tmp surefire_0-20231018214319839_2tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="/home/wendell/Desktop/p3/LEDA/R11-01-Rot-BST-environment/target/test-classes:/home/wendell/Desktop/p3/LEDA/R11-01-Rot-BST-environment/target/classes:/home/wendell/.m2/repository/junit/junit/4.13.1/junit-4.13.1.jar:/home/wendell/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -27,7 +27,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="/home/wendell/Desktop/p3/LEDA/R11-01-Rot-BST-environment/target/surefire/surefirebooter-20231018213956063_3.jar"/>
+    <property name="surefire.real.class.path" value="/home/wendell/Desktop/p3/LEDA/R11-01-Rot-BST-environment/target/surefire/surefirebooter-20231018214319839_3.jar"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="17.0.8.1+1-Ubuntu-0ubuntu122.04"/>
     <property name="user.name" value="wendell"/>
@@ -56,7 +56,7 @@
   <testcase name="testInit" classname="adt.bst.StudentBSTTest" time="0.0"/>
   <testcase name="testSize" classname="adt.bst.StudentBSTTest" time="0.0"/>
   <testcase name="testHeight" classname="adt.bst.StudentBSTTest" time="0.0"/>
-  <testcase name="testMinMax" classname="adt.bst.StudentBSTTest" time="0.001"/>
+  <testcase name="testMinMax" classname="adt.bst.StudentBSTTest" time="0.0"/>
   <testcase name="testRemove" classname="adt.bst.StudentBSTTest" time="0.0"/>
   <testcase name="testSearch" classname="adt.bst.StudentBSTTest" time="0.0"/>
 </testsuite>
