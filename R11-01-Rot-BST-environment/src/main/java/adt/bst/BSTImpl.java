@@ -1,5 +1,7 @@
 package adt.bst;
 
+import java.util.ArrayList;
+
 import adt.bt.BTNode;
 
 public class BSTImpl<T extends Comparable<T>> implements BST<T> {
@@ -36,11 +38,7 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 			tempRight = 1 + recursiveHeight((BSTNode<T>) node.getRight());
 		}
 
-		if (tempLeft > tempRight) {
-			res = tempLeft;
-		} else {
-			res = tempRight;
-		}
+		res = Math.max(tempLeft, tempRight);
 
 		return res;
 	}
@@ -50,6 +48,7 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 		return recursiveSearch(getRoot(), element);
 	}
 
+	// Se for o root ele não entra na recursão e já retorna de cara
 	private BSTNode<T> recursiveSearch(BSTNode<T> node, T element) {
 		BSTNode<T> res = new BSTNode<T>();
 		if (element != null) { 
@@ -236,62 +235,59 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 		} 
 	}
 	
-	//A questão do uso de int[] para o index foi pois não foi respondido no discord se podia utilizar arraylist
-	// assim eu utilizei o index dessa maneira para que não precisasse resetar toda vez que fosse chamado na recursão
 	@SuppressWarnings("unchecked")
 	public T[] preOrder() {
-    	T[] tempArray = (T[]) new Comparable[size()];
-    	int[] index = { 0 }; 
-    	recursivePreOrder(getRoot(), tempArray, index);
+    	ArrayList<T> tempArray = new ArrayList<T>();
+    	recursivePreOrder(getRoot(), tempArray);
 
-    	return tempArray;
+		T[] result = (T[]) tempArray.toArray(new Comparable[tempArray.size()]);
+
+    	return result;
 	}
 
-	private void recursivePreOrder(BSTNode<T> node, T[] array, int[] index) {
+	private void recursivePreOrder(BSTNode<T> node, ArrayList<T> array) {
     	if (!node.isEmpty()) {
-        	array[index[0]++] = node.getData();
-        	recursivePreOrder((BSTNode<T>) node.getLeft(), array, index);
-        	recursivePreOrder((BSTNode<T>) node.getRight(), array, index);
+        	array.add(node.getData());
+        	recursivePreOrder((BSTNode<T>) node.getLeft(), array);
+        	recursivePreOrder((BSTNode<T>) node.getRight(), array);
     	}
 	}
 
-	//A questão do uso de int[] para o index foi pois não foi respondido no discord se podia utilizar arraylist
-	// assim eu utilizei o index dessa maneira para que não precisasse resetar toda vez que fosse chamado na recursão
 	@Override
 	@SuppressWarnings("unchecked")
 	public T[] order() {
-    	T[] tempArray = (T[]) new Comparable[size()];
-    	int[] index = { 0 }; 
-		recursiveOrder(getRoot(), tempArray, index);
+    	ArrayList<T> tempArray = new ArrayList<T>();
+		recursiveOrder(getRoot(), tempArray);
 
-		return tempArray;
+		T[] result = (T[]) tempArray.toArray(new Comparable[tempArray.size()]);
+
+		return result;
 	}
 
-	private void recursiveOrder(BSTNode<T> node, T[] array, int[] index) {
+	private void recursiveOrder(BSTNode<T> node, ArrayList<T> array) {
 		if (!node.isEmpty()) {
-			recursiveOrder((BSTNode<T>) node.getLeft(), array, index);
-			array[index[0]++] = node.getData();
-			recursiveOrder((BSTNode<T>) node.getRight(), array, index);
+			recursiveOrder((BSTNode<T>) node.getLeft(), array);
+			array.add(node.getData());
+			recursiveOrder((BSTNode<T>) node.getRight(), array);
 		}
 	}
 
-	//A questão do uso de int[] para o index foi pois não foi respondido no discord se podia utilizar arraylist
-	// assim eu utilizei o index dessa maneira para que não precisasse resetar toda vez que fosse chamado na recursão
 	@Override
 	@SuppressWarnings("unchecked")
 	public T[] postOrder() {
-    	T[] tempArray = (T[]) new Comparable[size()];
-    	int[] index = { 0 }; 
-		recursivePostOrder(getRoot(), tempArray, index);
+	    ArrayList<T> tempArray = new ArrayList<T>();
+		recursivePostOrder(getRoot(), tempArray);
 
-		return tempArray;
+		T[] result = (T[]) tempArray.toArray(new Comparable[tempArray.size()]);
+
+		return result;
 	}
 
-	private void recursivePostOrder(BSTNode<T> node, T[] array, int[] index) {
+	private void recursivePostOrder(BSTNode<T> node, ArrayList<T> array) {
 		if (!node.isEmpty()) {
-			recursivePostOrder((BSTNode<T>) node.getLeft(), array, index);
-			recursivePostOrder((BSTNode<T>) node.getRight(), array, index);
-			array[index[0]++] = node.getData();
+			recursivePostOrder((BSTNode<T>) node.getLeft(), array);
+			recursivePostOrder((BSTNode<T>) node.getRight(), array);
+			array.add(node.getData());
 		}
 	} 
 

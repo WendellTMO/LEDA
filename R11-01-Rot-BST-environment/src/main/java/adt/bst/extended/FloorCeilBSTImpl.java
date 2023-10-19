@@ -24,7 +24,9 @@ public class FloorCeilBSTImpl extends BSTImpl<Integer> implements FloorCeilBST {
 		Integer result = search;
 		
 		if (bstNode != null && !bstNode.isEmpty()) {
-			if (bstNode.getData() < target) {	
+			if (bstNode.getData() < target) {
+				
+				// eu atualizo o search e continuo a recursão pois não me garante que o valor que achei é aquele que queremos
 				search = bstNode.getData();
 				result = recursiveFloor((BSTNode<Integer>) bstNode.getRight(), search, target);
 			} else if (bstNode.getData() > target) {
@@ -50,6 +52,8 @@ public class FloorCeilBSTImpl extends BSTImpl<Integer> implements FloorCeilBST {
 		Integer result = search;
 		if (bstNode != null && !bstNode.isEmpty()) {
 			if (bstNode.getData() > target ) {
+				
+				// eu atualizo o search e continuo a recursão pois não me garante que o valor que achei é aquele que queremos
 				search = bstNode.getData();
 				result = recursiveCeil((BSTNode<Integer>) bstNode.getLeft(), search, target);
 			} else if (bstNode.getData() < target ) {
