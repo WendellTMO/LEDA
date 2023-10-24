@@ -2,6 +2,8 @@ package adt.avltree;
 
 import adt.bst.BSTImpl;
 import adt.bst.BSTNode;
+import adt.bt.BTNode;
+import adt.bt.Util;
 
 /**
  * 
@@ -29,7 +31,7 @@ public class AVLTreeImpl<T extends Comparable<T>> extends BSTImpl<T> implements
 	// AUXILIARY
 	protected int calculateBalance(BSTNode<T> node) {
 		int result = 0;
-		if (!node.isEmpty()) {
+		if (node != null && !node.isEmpty()) {
 			result = height((BSTNode<T>) node.getLeft()) - height((BSTNode<T>) node.getRight());
 		}
 		return result;
@@ -40,6 +42,29 @@ public class AVLTreeImpl<T extends Comparable<T>> extends BSTImpl<T> implements
 		int balance = calculateBalance(node);
 
 		if (Math.abs(balance) > 1) {
+			int rightBalance = calculateBalance((BSTNode<T>) node.getRight());
+			int leftBalance = calculateBalance((BSTNode<T>) node.getLeft());
+
+			if (balance == 2) {
+				// LL case 
+				if (leftBalance >= 0) {
+					BSTNode<T> temp = Util.leftRotation(node);
+					node = temp;
+				} else {
+					// LR case
+
+
+				}
+
+			} else {
+				// RR Case
+				if (rightBalance <= 0) {
+
+				} else {
+					// RL case
+				}
+
+			}
 			
 		}
 	}
@@ -55,13 +80,86 @@ public class AVLTreeImpl<T extends Comparable<T>> extends BSTImpl<T> implements
 
 	@Override
 	public void insert(T element) {
+		recursiveInsert(getRoot(), element);
+	}
 
+	private void recursiveInsert(BSTNode<T> node, T element) {
+		if (node.isEmpty()) {
+			node.setData(element);
+
+			node.setLeft(new BSTNode<T>());
+			node.getLeft().setParent(node);
+
+			node.setRight(new BSTNode<T>());
+			node.getRight().setParent(node);
+		} else if (node.getData().compareTo(element) > 0) {
+			recursiveInsert((BSTNode<T>) node.getLeft(), element);
+		} else {
+			recursiveInsert((BSTNode<T>) node.getRight(), element);
+		}
+		rebalance(node);
 	}
 
 	@Override
 	public void remove(T element) {
-
+		if (element != null) {	
+			BSTNode<T> node = search(element);
+			if (!node.isEmpty()) {
+				recursiveRemove(node);
+			}
+		}
 	}
+
+	private void recursiveRemove(BSTNode<T> node) {
+		if (node.isLeaf()) {
+			if (node.getParent() == null) {
+				root = new BSTNode<T>();
+			} else {
+				if (node.getData().compareTo(node.getParent().getData()) < 0) {
+					node.getParent().setLeft(new BSTNode<T>());
+						
+				} else {
+					node.getParent().setRight(new BSTNode<T>());
+
+				}
+				rebalanceUp(node);
+			}			
+
+		} else if (node.getRight().isEmpty()) {
+			if (node.getParent() == null) {
+				root = (BSTNode<T>) root.getLeft();
+				root.setParent(null);
+
+			} else {
+				node.getLeft().setParent(node.getParent());
+				if (node.getData().compareTo(node.getParent().getData()) < 0) {
+					node.getParent().setLeft(node.getLeft());
+				} else {
+					node.getParent().setRight(node.getLeft());
+				}
+			}
+		} else if (node.getLeft().isEmpty()) { 
+
+			if (node.getParent() == null) {
+				root = (BSTNode<T>) root.getRight();
+				root.setParent(null);
+
+			} else {
+				node.getRight().setParent(node.getParent());
+				if (node.getData().compareTo(node.getParent().getData()) < 0) {
+					node.getParent().setLeft(node.getRight());
+				} else {
+					node.getParent().setRight(node.getRight());
+				}
+			}
+			rebalanceUp(node);
+		} else {
+			BSTNode<T> sucessor = sucessor(node.getData());
+			node.setData(sucessor.getData());
+			recursiveRemove(sucessor);
+		} 
+	}
+
 
 	public int height(BSTNode<T> node) {
 		int tempLeft = -1;
