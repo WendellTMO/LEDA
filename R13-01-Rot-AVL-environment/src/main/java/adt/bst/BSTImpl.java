@@ -2,8 +2,6 @@ package adt.bst;
 
 import java.util.ArrayList;
 
-import adt.bt.BTNode;
-
 public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 
 	protected BSTNode<T> root;
@@ -27,20 +25,15 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 	}
 
 	private int recursiveHeight(BSTNode<T> node) {
-		int res = -1;
 		int tempLeft = -1;
 		int tempRight = -1;
 		if (!node.isEmpty()) {
 			tempLeft = 1 + recursiveHeight((BSTNode<T>) node.getLeft());
-		}
 
-		if (!node.isEmpty()) {
 			tempRight = 1 + recursiveHeight((BSTNode<T>) node.getRight());
 		}
 
-		res = Math.max(tempLeft, tempRight);
-
-		return res;
+		return Math.max(tempLeft, tempRight);
 	}
 
 	@Override
@@ -48,21 +41,19 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 		return recursiveSearch(getRoot(), element);
 	}
 
-	// Se for o root ele não entra na recursão e já retorna de cara
-	private BSTNode<T> recursiveSearch(BSTNode<T> node, T element) {
-		BSTNode<T> res = new BSTNode<T>();
-		if (element != null) { 
-			if (node.isEmpty() || node.getData().equals(element)) {
-				res = node;
-			} else if (node.getData().compareTo(element) < 0) {
-				res = recursiveSearch((BSTNode<T>) node.getRight(), element);
+	private BSTNode<T> recursiveSearch(BSTNode<T> node, T target) {
+		BSTNode<T> result = new BSTNode<T>();
+		if (node != null) {
+			if (node.isEmpty() || node.getData().equals(target)) {
+				result = node;
+			} else if (node.getData().compareTo(target) < 0) {
+				result = recursiveSearch((BSTNode<T>) node.getRight(), target);
 			} else {
-				res = recursiveSearch((BSTNode<T>) node.getLeft(), element);
+				result = recursiveSearch((BSTNode<T>) node.getLeft(), target);
 			}
-		}
-		return res;
+		}	
+		return result;
 	}
-
 
 	@Override
 	public void insert(T element) {
@@ -74,13 +65,12 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 	private void recursiveInsert(BSTNode<T> node, T element) {
 		if (node.isEmpty()) {
 			node.setData(element);
-			
+
 			node.setLeft(new BSTNode<T>());
 			node.getLeft().setParent(node);
 
 			node.setRight(new BSTNode<T>());
 			node.getRight().setParent(node);
-
 		} else if (node.getData().compareTo(element) < 0) {
 			recursiveInsert((BSTNode<T>) node.getRight(), element);
 		} else {
@@ -125,56 +115,54 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 
 	@Override
 	public BSTNode<T> sucessor(T element) {
-		BSTNode<T> res = null;
+		BSTNode<T> result = null;
 		if (element != null) {
 			BSTNode<T> target = search(element);
 			if (!target.isEmpty()) {
 				if (!target.getRight().isEmpty()) {
-					res = recursiveMinimum((BSTNode<T>) target.getRight());
+					result = recursiveMinimum((BSTNode<T>) target.getRight());
 				} else {
-					res = recursiveSucessor(target, element);
+					result = recursiveSucessor(target, element);
 				}
 			}
 		}
-		return res;
+		return result;
 	}
 
 	private BSTNode<T> recursiveSucessor(BSTNode<T> node, T element) {
-		BSTNode<T> res = null;
+		BSTNode<T> result = null;
 		if (!node.getLeft().isEmpty() && node.getLeft().getData().equals(element)) {
-			res = node;
+			result = node;
 		} else if (node.getParent() != null) {
-			res = recursiveSucessor((BSTNode<T>) node.getParent(), node.getData());
+			result = recursiveSucessor((BSTNode<T>) node.getParent(), node.getData());
 		}
-		return res;
+		return result;
 	}
 
 	@Override
 	public BSTNode<T> predecessor(T element) {
-		BSTNode<T> res = null;
+		BSTNode<T> result = null;
 		if (element != null) {
 			BSTNode<T> target = search(element);
 			if (!target.isEmpty()) {
 				if (!target.getLeft().isEmpty()) {
-					res = recursiveMaximum((BSTNode<T>) target.getLeft());
+					result = recursiveMaximum((BSTNode<T>)target.getLeft());
 				} else {
-					res = recursivePredecessor(target, element);
+					result = recursivePredecessor(target, element);
 				}
 			}
 		}
-		return res;
+		return result;
 	}
 
 	private BSTNode<T> recursivePredecessor(BSTNode<T> node, T element) {
-		BSTNode<T> res = null;
+		BSTNode<T> result = null;
 		if (!node.getRight().isEmpty() && node.getRight().getData().equals(element)) {
-			res = node;
+			result = node;
 		} else if (node.getParent() != null) {
-			res = recursivePredecessor((BSTNode<T>) node.getParent(), node.getData());
+			result = recursivePredecessor((BSTNode<T>) node.getParent(), node.getData());
 		}
-
-		return res;
-
+		return result;
 	}
 
 	@Override
@@ -235,7 +223,7 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 			recursiveRemove(sucessor);
 		} 
 	}
-	
+
 	@Override
 	@SuppressWarnings("unchecked")
 	public T[] preOrder() {
