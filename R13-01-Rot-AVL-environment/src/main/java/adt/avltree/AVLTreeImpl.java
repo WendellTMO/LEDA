@@ -40,30 +40,37 @@ public class AVLTreeImpl<T extends Comparable<T>> extends BSTImpl<T> implements
 	// AUXILIARY
 	protected void rebalance(BSTNode<T> node) {
 		int balance = calculateBalance(node);
-
 		if (Math.abs(balance) > 1) {
 			int rightBalance = calculateBalance((BSTNode<T>) node.getRight());
 			int leftBalance = calculateBalance((BSTNode<T>) node.getLeft());
 
+			BSTNode<T> newNode = null;
+			
 			if (balance == 2) {
 				// LL case 
 				if (leftBalance >= 0) {
-					BSTNode<T> temp = Util.leftRotation(node);
-					node = temp;
+					newNode = Util.rightRotation(node);
+
 				} else {
 					// LR case
-
-
+					Util.leftRotation((BSTNode<T>) node.getLeft());
+					newNode = Util.rightRotation(node);
 				}
 
 			} else {
 				// RR Case
 				if (rightBalance <= 0) {
+					newNode = Util.leftRotation(node);
 
 				} else {
 					// RL case
+					Util.rightRotation((BSTNode<T>) node.getRight());
+					newNode = Util.leftRotation(node);
 				}
+			}
 
+			if (getRoot().equals(node) && newNode != null) {
+				root = newNode;
 			}
 			
 		}
@@ -92,12 +99,14 @@ public class AVLTreeImpl<T extends Comparable<T>> extends BSTImpl<T> implements
 
 			node.setRight(new BSTNode<T>());
 			node.getRight().setParent(node);
-		} else if (node.getData().compareTo(element) > 0) {
-			recursiveInsert((BSTNode<T>) node.getLeft(), element);
 		} else {
-			recursiveInsert((BSTNode<T>) node.getRight(), element);
+			if (node.getData().compareTo(element) > 0) {
+				recursiveInsert((BSTNode<T>) node.getLeft(), element);
+			} else if (node.getData().compareTo(element) < 0) {
+				recursiveInsert((BSTNode<T>) node.getRight(), element);
+			}
+			rebalance(node);
 		}
-		rebalance(node);
 	}
 
 	@Override
@@ -117,13 +126,11 @@ public class AVLTreeImpl<T extends Comparable<T>> extends BSTImpl<T> implements
 			} else {
 				if (node.getData().compareTo(node.getParent().getData()) < 0) {
 					node.getParent().setLeft(new BSTNode<T>());
-						
 				} else {
 					node.getParent().setRight(new BSTNode<T>());
-
 				}
 				rebalanceUp(node);
-			}			
+			}
 
 		} else if (node.getRight().isEmpty()) {
 			if (node.getParent() == null) {
@@ -138,8 +145,9 @@ public class AVLTreeImpl<T extends Comparable<T>> extends BSTImpl<T> implements
 					node.getParent().setRight(node.getLeft());
 				}
 			}
-		} else if (node.getLeft().isEmpty()) { 
+			rebalanceUp(node);
 
+		} else if (node.getLeft().isEmpty()) { 
 			if (node.getParent() == null) {
 				root = (BSTNode<T>) root.getRight();
 				root.setParent(null);
@@ -153,6 +161,7 @@ public class AVLTreeImpl<T extends Comparable<T>> extends BSTImpl<T> implements
 				}
 			}
 			rebalanceUp(node);
+
 		} else {
 			BSTNode<T> sucessor = sucessor(node.getData());
 			node.setData(sucessor.getData());
@@ -160,7 +169,7 @@ public class AVLTreeImpl<T extends Comparable<T>> extends BSTImpl<T> implements
 		} 
 	}
 
-
+	
 	public int height(BSTNode<T> node) {
 		int tempLeft = -1;
 		int tempRight = -1;

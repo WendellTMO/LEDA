@@ -14,10 +14,22 @@ public class Util {
 		BSTNode<T> root = node;
 
 		BSTNode<T> pivot = (BSTNode<T>) root.getRight();
-		root.setRight(node.getLeft());
+		root.setRight(pivot.getLeft());
+		root.getRight().setParent(root);
+
 		pivot.setLeft(root);
+		BSTNode<T> tempParent = (BSTNode<T>) root.getParent();
+		pivot.getLeft().setParent(pivot);
+		pivot.setParent(tempParent);
+		if (pivot.getParent() != null) {
+			if (pivot.getParent().getRight().equals(node)) {
+				pivot.getParent().setRight(pivot);
+			} else {
+				pivot.getParent().setLeft(pivot);
+			}
+		}
+
 		root = pivot;
-		
 		return root;
 	}
 
@@ -31,9 +43,22 @@ public class Util {
 
 		BSTNode<T> pivot = (BSTNode<T>) root.getLeft();
 		root.setLeft(pivot.getRight());
-		pivot.setRight(root);
-		pivot = root;
+		root.getLeft().setParent(root);
 
+		pivot.setRight(root);
+		BSTNode<T> tempParent = (BSTNode<T>) root.getParent();
+		pivot.getRight().setParent(pivot);
+		pivot.setParent(tempParent);
+
+		if (pivot.getParent() != null) {
+			if (pivot.getParent().getLeft().equals(node)) {
+				pivot.getParent().setLeft(pivot);
+			} else {
+				pivot.getParent().setRight(pivot);
+			}
+		}
+
+		root = pivot;
 		return root;
 	}
 

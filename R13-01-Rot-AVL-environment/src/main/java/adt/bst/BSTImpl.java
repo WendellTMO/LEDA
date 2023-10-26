@@ -71,10 +71,12 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 
 			node.setRight(new BSTNode<T>());
 			node.getRight().setParent(node);
-		} else if (node.getData().compareTo(element) < 0) {
-			recursiveInsert((BSTNode<T>) node.getRight(), element);
 		} else {
-			recursiveInsert((BSTNode<T>) node.getLeft(), element);
+			if (node.getData().compareTo(element) < 0) {
+			recursiveInsert((BSTNode<T>) node.getRight(), element);
+			} else if (node.getData().compareTo(element) > 0) {
+				recursiveInsert((BSTNode<T>) node.getLeft(), element);
+			}
 		}
 	}
 
@@ -190,7 +192,7 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 				}
 			}			
 
-		}else if (node.getRight().isEmpty()) {
+		} else if (node.getRight().isEmpty()) {
 			if (node.getParent() == null) {
 				root = (BSTNode<T>) root.getLeft();
 				root.setParent(null);
