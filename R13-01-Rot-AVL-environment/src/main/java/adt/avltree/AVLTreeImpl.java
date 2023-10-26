@@ -50,6 +50,7 @@ public class AVLTreeImpl<T extends Comparable<T>> extends BSTImpl<T> implements
 				// LL case 
 				if (leftBalance >= 0) {
 					newNode = Util.rightRotation(node);
+					
 
 				} else {
 					// LR case
