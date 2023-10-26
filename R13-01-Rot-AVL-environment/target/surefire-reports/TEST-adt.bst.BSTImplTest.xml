@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="adt.avltree.StudentAVLTest" time="0.046" tests="3" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="adt.bst.BSTImplTest" time="0.006" tests="8" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="17"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
@@ -51,7 +51,12 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="61.0"/>
   </properties>
-  <testcase name="testInit" classname="adt.avltree.StudentAVLTest" time="0.002"/>
-  <testcase name="testInsert" classname="adt.avltree.StudentAVLTest" time="0.0"/>
-  <testcase name="testRemove" classname="adt.avltree.StudentAVLTest" time="0.0"/>
+  <testcase name="testSucessorPredecessor" classname="adt.bst.BSTImplTest" time="0.0"/>
+  <testcase name="testOrder" classname="adt.bst.BSTImplTest" time="0.0"/>
+  <testcase name="testInit" classname="adt.bst.BSTImplTest" time="0.0"/>
+  <testcase name="testSize" classname="adt.bst.BSTImplTest" time="0.0"/>
+  <testcase name="testHeight" classname="adt.bst.BSTImplTest" time="0.0"/>
+  <testcase name="testMinMax" classname="adt.bst.BSTImplTest" time="0.0"/>
+  <testcase name="testRemove" classname="adt.bst.BSTImplTest" time="0.0"/>
+  <testcase name="testSearch" classname="adt.bst.BSTImplTest" time="0.0"/>
 </testsuite>
