@@ -48,7 +48,7 @@ public class StudentTestAVLCountAndFill {
 		assertEquals(0, tree2.LRcount());
 		assertEquals(1, tree3.LRcount());
 	}
-
+	
 	@Test
 	public void testRLcount() {
 		assertEquals(0, tree1.RLcount());
@@ -67,6 +67,7 @@ public class StudentTestAVLCountAndFill {
 		assertEquals(0, tree1.RLcount());
 		Arrays.sort(keys);
 		assertArrayEquals(keys, tree1.order());
+		assertTrue(new AVLTreeVerifierImpl<Integer>(tree1).isAVLTree());
 
 
 		tree1 = new AVLCountAndFillImpl<Integer>();
@@ -78,7 +79,7 @@ public class StudentTestAVLCountAndFill {
 		assertEquals(0, tree1.RLcount());
 		Arrays.sort(keys2);
 		assertArrayEquals(keys2, tree1.order());
-
+		assertTrue(new AVLTreeVerifierImpl<Integer>(tree1).isAVLTree());
 
 		tree1 = new AVLCountAndFillImpl<Integer>();
 		Integer[] keys3 = { 1 };
@@ -89,7 +90,7 @@ public class StudentTestAVLCountAndFill {
 		assertEquals(0, tree1.RLcount());
 		Arrays.sort(keys3);
 		assertArrayEquals(keys3, tree1.order());
-
+		assertTrue(new AVLTreeVerifierImpl<Integer>(tree1).isAVLTree());
 
 		tree1 = new AVLCountAndFillImpl<Integer>();
 		Integer[] keys4 = { 1, 2, 3 };
@@ -100,7 +101,7 @@ public class StudentTestAVLCountAndFill {
 		assertEquals(0, tree1.RLcount());
 		Arrays.sort(keys4);
 		assertArrayEquals(keys4, tree1.order());
-
+		assertTrue(new AVLTreeVerifierImpl<Integer>(tree1).isAVLTree());
 
 		tree1 = new AVLCountAndFillImpl<Integer>();
 		Integer[] keys5 = { 1, 2, 3, 4, 6, 7, 8 ,9};
@@ -111,7 +112,7 @@ public class StudentTestAVLCountAndFill {
 		assertEquals(0, tree1.RLcount());
 		Arrays.sort(keys5);
 		assertArrayEquals(keys5, tree1.order());
-
+		assertTrue(new AVLTreeVerifierImpl<Integer>(tree1).isAVLTree());
 
 		tree1 = new AVLCountAndFillImpl<Integer>();
 		Integer[] keys6 = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 45, 34, -1, 0, 10};
@@ -122,6 +123,7 @@ public class StudentTestAVLCountAndFill {
 		assertEquals(0, tree1.RLcount());
 		Arrays.sort(keys6);
 		assertArrayEquals(keys6, tree1.order());
+		assertTrue(new AVLTreeVerifierImpl<Integer>(tree1).isAVLTree());
 
 		tree1 = new AVLCountAndFillImpl<Integer>();
 		Integer[] keys7 = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
@@ -131,5 +133,15 @@ public class StudentTestAVLCountAndFill {
 		assertEquals(0, tree1.LRcount());
 		assertEquals(0, tree1.RLcount());
 		assertArrayEquals(new Integer[]{1,2,3,4,5,6,7,8,9,10}, tree1.order());
+		assertTrue(new AVLTreeVerifierImpl<Integer>(tree1).isAVLTree());
+
+		tree1 = new AVLCountAndFillImpl<Integer>();
+		Integer[] keys8 = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 9, 9, 9, 9, 9};
+		tree1.fillWithoutRebalance(keys8);
+		assertEquals(0, tree1.LLcount());
+		assertEquals(0, tree1.RRcount());
+		assertEquals(0, tree1.LRcount());
+		assertEquals(0, tree1.RLcount());
+		assertArrayEquals(new Integer[]{1, 2, 3, 4, 5, 6, 7, 8, 9}, tree1.order());
 	}
 }

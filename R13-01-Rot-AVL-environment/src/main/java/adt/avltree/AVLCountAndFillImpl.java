@@ -43,10 +43,23 @@ public class AVLCountAndFillImpl<T extends Comparable<T>> extends
 	public void fillWithoutRebalance(T[] array) {
 		Arrays.sort(array);
 
+		T[] arr = removeElementosRepetidos(array);
+
 		int level = 0;
-		while (filling(array, 0, array.length - 1, level)) {
+		while (filling(arr, 0, arr.length - 1, level)) {
 			level++;
 		}
+	}
+
+	@SuppressWarnings("unchecked")
+	private T[] removeElementosRepetidos(T[] array) {
+		List<T> list = new ArrayList<T>();
+		for (int i = 0; i < array.length; i++) {
+			if (!list.contains(array[i])) {
+				list.add(array[i]);
+			}
+		}
+		return (T[]) list.toArray(new Comparable[0]);
 	}
 
 	private boolean filling(T[] array, int left, int right, int level) {
@@ -55,6 +68,7 @@ public class AVLCountAndFillImpl<T extends Comparable<T>> extends
 			int middle = (left + right) / 2;
 			if (level == 0) {
 				insert(array[middle]);
+
 				result = true;
 			} else {
 				result = filling(array, left, middle - 1, level - 1);

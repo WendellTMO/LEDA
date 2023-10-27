@@ -44,6 +44,12 @@ public class StudentAVLTest {
 		assertEquals(3, avl.size());
 		assertEquals(1, avl.height());
 		assertArrayEquals(new Integer[] { -10, -15, 20 }, avl.preOrder());
+		
+		// não é pra inserir esse elemento
+		avl.insert(20);
+		assertEquals(3, avl.size());
+		assertEquals(1, avl.height());
+		assertArrayEquals(new Integer[] { -10, -15, 20 }, avl.preOrder());
 	}
 
 	@Test

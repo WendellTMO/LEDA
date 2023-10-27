@@ -87,7 +87,11 @@ public class AVLTreeImpl<T extends Comparable<T>> extends BSTImpl<T> implements
 
 	@Override
 	public void insert(T element) {
-		recursiveInsert(getRoot(), element);
+		// Garantia que não irá inserer elementos repetidos dentro da AVL
+		BSTNode<T> search = search(element);
+		if (search.isEmpty()) {
+			recursiveInsert(getRoot(), element);
+		}
 	}
 
 	private void recursiveInsert(BSTNode<T> node, T element) {
