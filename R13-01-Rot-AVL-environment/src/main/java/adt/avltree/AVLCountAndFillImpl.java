@@ -1,6 +1,9 @@
 package adt.avltree;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+
 import adt.bst.BSTNode;
 import adt.bt.Util;
 
@@ -42,13 +45,19 @@ public class AVLCountAndFillImpl<T extends Comparable<T>> extends
 		int skip = array.length / 2;
 		int control = skip;
 		int i = 0;
+		List<T> visited = new ArrayList<T>();
 		while (i < array.length) {
 			if (control < array.length) {
-				insert(array[control]);
-				control = skip + 1;
-				i++;
+				if (!visited.contains(array[control])) {
+					insert(array[control]);
+					visited.add(array[control]);
+					i++;
+				}
+				
+				control += skip +1;
+		
 			} else {
-				skip = skip / 2;
+				skip = (skip / 2) ;
 				control = skip;
 			}
 		}
