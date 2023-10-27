@@ -32,8 +32,8 @@ public class BSTVerifierImpl<T extends Comparable<T>> implements BSTVerifier<T> 
 	private boolean recursiveVerification(BSTNode<T> node) {
 		boolean result = true;
 		if (node != null && !node.isEmpty()) {
-			if ((!node.getLeft().isEmpty() && node.getLeft().getData().compareTo(node.getData()) > 0) ||
-				(!node.getRight().isEmpty() && node.getRight().getData().compareTo(node.getData()) < 0) ) {
+			if ((node.getLeft() != null && !node.getLeft().isEmpty() && node.getLeft().getData().compareTo(node.getData()) > 0) ||
+				(node.getRight() != null && !node.getRight().isEmpty() && node.getRight().getData().compareTo(node.getData()) < 0) ) {
 					result = false;
 				}
 				result = result && recursiveVerification((BSTNode<T>) node.getLeft()) && recursiveVerification((BSTNode<T>) node.getRight());

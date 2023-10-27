@@ -1,6 +1,6 @@
 package adt.avltree;
 
-import adt.bst.BSTImpl;
+import java.util.Arrays;
 import adt.bst.BSTNode;
 import adt.bt.Util;
 
@@ -38,12 +38,21 @@ public class AVLCountAndFillImpl<T extends Comparable<T>> extends
 
 	@Override
 	public void fillWithoutRebalance(T[] array) {
-		BSTImpl<T> withoutRebalance = new BSTImpl<>();
-		for (T i : array) {
-			withoutRebalance.insert(i);
+		Arrays.sort(array);
+		int skip = array.length / 2;
+		int control = skip;
+		int i = 0;
+		while (i < array.length) {
+			if (control < array.length) {
+				insert(array[control]);
+				control = skip + 1;
+				i++;
+			} else {
+				skip = skip / 2;
+				control = skip;
+			}
 		}
 
-		root = withoutRebalance.getRoot();
 	}
 
 	@Override	

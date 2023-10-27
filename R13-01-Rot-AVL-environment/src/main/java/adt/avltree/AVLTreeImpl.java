@@ -171,11 +171,11 @@ public class AVLTreeImpl<T extends Comparable<T>> extends BSTImpl<T> implements
 	}
 
 	
-	public int height(BSTNode<T> node) {
+	private int height(BSTNode<T> node) {
 		int tempLeft = -1;
 		int tempRight = -1;
 
-		if (!node.isEmpty()) {
+		if (node != null && !node.isEmpty()) {
 			tempLeft = 1 + height((BSTNode<T>) node.getLeft());
 			tempRight = 1 + height((BSTNode<T>) node.getRight());
 		}
