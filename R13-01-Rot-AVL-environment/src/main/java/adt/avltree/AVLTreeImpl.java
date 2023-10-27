@@ -2,7 +2,6 @@ package adt.avltree;
 
 import adt.bst.BSTImpl;
 import adt.bst.BSTNode;
-import adt.bt.BTNode;
 import adt.bt.Util;
 
 /**
@@ -25,7 +24,7 @@ import adt.bt.Util;
 public class AVLTreeImpl<T extends Comparable<T>> extends BSTImpl<T> implements
 		AVLTree<T> {
 
-	// TODO Do not forget: you must override the methods insert and remove
+	// Do not forget: you must override the methods insert and remove
 	// conveniently.
 
 	// AUXILIARY

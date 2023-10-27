@@ -42,25 +42,26 @@ public class AVLCountAndFillImpl<T extends Comparable<T>> extends
 	@Override
 	public void fillWithoutRebalance(T[] array) {
 		Arrays.sort(array);
-		int skip = array.length / 2;
-		int control = skip;
-		int i = 0;
-		List<T> visited = new ArrayList<T>();
-		while (i < array.length) {
-			if (control < array.length) {
-				if (!visited.contains(array[control])) {
-					insert(array[control]);
-					visited.add(array[control]);
-					i++;
-				}
-				
-				control += skip +1;
-		
+
+		int level = 0;
+		while (filling(array, 0, array.length - 1, level)) {
+			level++;
+		}
+	}
+
+	private boolean filling(T[] array, int left, int right, int level) {
+		boolean result = false;
+		if (left <= right) {
+			int middle = (left + right) / 2;
+			if (level == 0) {
+				insert(array[middle]);
+				result = true;
 			} else {
-				skip = (skip / 2) ;
-				control = skip;
+				result = filling(array, left, middle - 1, level - 1);
+				result = filling(array, middle + 1, right, level - 1);
 			}
 		}
+		return result;
 
 	}
 

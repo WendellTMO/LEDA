@@ -2,6 +2,7 @@ package adt.avltree;
 
 import static org.junit.Assert.*;
 
+import java.util.Arrays;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -64,6 +65,9 @@ public class StudentTestAVLCountAndFill {
 		assertEquals(0, tree1.RRcount());
 		assertEquals(0, tree1.LRcount());
 		assertEquals(0, tree1.RLcount());
+		Arrays.sort(keys);
+		assertArrayEquals(keys, tree1.order());
+
 
 		tree1 = new AVLCountAndFillImpl<Integer>();
 		Integer[] keys2 = { 4, 12, 2, 6, 10, 14, 1, 3, 5, 7, 9, 11, 13, 15 };
@@ -72,6 +76,9 @@ public class StudentTestAVLCountAndFill {
 		assertEquals(0, tree1.RRcount());
 		assertEquals(0, tree1.LRcount());
 		assertEquals(0, tree1.RLcount());
+		Arrays.sort(keys2);
+		assertArrayEquals(keys2, tree1.order());
+
 
 		tree1 = new AVLCountAndFillImpl<Integer>();
 		Integer[] keys3 = { 1 };
@@ -80,6 +87,9 @@ public class StudentTestAVLCountAndFill {
 		assertEquals(0, tree1.RRcount());
 		assertEquals(0, tree1.LRcount());
 		assertEquals(0, tree1.RLcount());
+		Arrays.sort(keys3);
+		assertArrayEquals(keys3, tree1.order());
+
 
 		tree1 = new AVLCountAndFillImpl<Integer>();
 		Integer[] keys4 = { 1, 2, 3 };
@@ -88,6 +98,9 @@ public class StudentTestAVLCountAndFill {
 		assertEquals(0, tree1.RRcount());
 		assertEquals(0, tree1.LRcount());
 		assertEquals(0, tree1.RLcount());
+		Arrays.sort(keys4);
+		assertArrayEquals(keys4, tree1.order());
+
 
 		tree1 = new AVLCountAndFillImpl<Integer>();
 		Integer[] keys5 = { 1, 2, 3, 4, 6, 7, 8 ,9};
@@ -95,21 +108,24 @@ public class StudentTestAVLCountAndFill {
 		assertEquals(0, tree1.LLcount());
 		assertEquals(0, tree1.RRcount());
 		assertEquals(0, tree1.LRcount());
-		assertArrayEquals(new Integer[]{1,2,3,4,6,7,8,9}, tree1.order());
+		assertEquals(0, tree1.RLcount());
+		Arrays.sort(keys5);
+		assertArrayEquals(keys5, tree1.order());
 
-		//assertEquals(0, tree1.RLcount());
 
 		tree1 = new AVLCountAndFillImpl<Integer>();
-		Integer[] keys7 = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 45, 34, -1, 0, 10};
-		tree1.fillWithoutRebalance(keys7);
+		Integer[] keys6 = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 45, 34, -1, 0, 10};
+		tree1.fillWithoutRebalance(keys6);
 		assertEquals(0, tree1.LLcount());
 		assertEquals(0, tree1.RRcount());
 		assertEquals(0, tree1.LRcount());
 		assertEquals(0, tree1.RLcount());
+		Arrays.sort(keys6);
+		assertArrayEquals(keys6, tree1.order());
 
 		tree1 = new AVLCountAndFillImpl<Integer>();
-		Integer[] keys8 = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-		tree1.fillWithoutRebalance(keys8);
+		Integer[] keys7 = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+		tree1.fillWithoutRebalance(keys7);
 		assertEquals(0, tree1.LLcount());
 		assertEquals(0, tree1.RRcount());
 		assertEquals(0, tree1.LRcount());

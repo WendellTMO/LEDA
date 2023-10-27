@@ -29,7 +29,6 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 		int tempRight = -1;
 		if (!node.isEmpty()) {
 			tempLeft = 1 + recursiveHeight((BSTNode<T>) node.getLeft());
-
 			tempRight = 1 + recursiveHeight((BSTNode<T>) node.getRight());
 		}
 
@@ -74,7 +73,7 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 		} else {
 			if (node.getData().compareTo(element) < 0) {
 			recursiveInsert((BSTNode<T>) node.getRight(), element);
-			} else if (node.getData().compareTo(element) > 0) {
+			} else if (node.getData().compareTo(element) >= 0) {
 				recursiveInsert((BSTNode<T>) node.getLeft(), element);
 			}
 		}

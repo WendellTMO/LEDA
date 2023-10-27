@@ -38,6 +38,7 @@ public class AVLTreeVerifierImplTest {
 
     @Test
     public void testIsAVLTree() {
+        
         fillTree();
         verifier = new AVLTreeVerifierImpl<Integer>(avl1);
         assertTrue(verifier.isAVLTree());
@@ -48,6 +49,17 @@ public class AVLTreeVerifierImplTest {
         bstOne.insert(new Integer(47));
         verifierBST = new BSTVerifierImpl<Integer>(bstOne);
         assertTrue(verifierBST.isBST());
+
+        avl1 = new AVLTreeImpl<Integer>();
+        avl1.getRoot().setData(new Integer(50));
+        avl1.getRoot().setRight(bstOne.getRoot().getRight());
+        avl1.getRoot().getRight().setParent(avl1.getRoot());
+        
+        avl1.getRoot().setLeft(bstOne.getRoot().getLeft());
+        avl1.getRoot().getLeft().setParent(avl1.getRoot());
+        verifier = new AVLTreeVerifierImpl<Integer>(avl1);
+        assertFalse(verifier.isAVLTree());
+
         avl2.insert(new Integer(50));
         avl2.insert(new Integer(45));
         avl2.getRoot().getLeft().setData(new Integer(40));
@@ -60,7 +72,6 @@ public class AVLTreeVerifierImplTest {
 
         verifier = new AVLTreeVerifierImpl<Integer>(avl2);
         assertFalse(verifier.isAVLTree());
-
 
     }
 }

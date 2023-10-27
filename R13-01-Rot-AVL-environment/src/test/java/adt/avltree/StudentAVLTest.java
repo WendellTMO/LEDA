@@ -68,5 +68,10 @@ public class StudentAVLTest {
 		avl.remove(55);
 		assertEquals(NIL, avl.getRoot());
 		assertTrue(avl.isEmpty());
+
+		avl.insert(-10);
+		assertEquals(1, avl.size());
+		assertEquals(0, avl.height());
+		assertArrayEquals(new Integer[] { -10 }, avl.preOrder());
 	}
 }
