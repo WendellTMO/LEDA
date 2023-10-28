@@ -180,5 +180,7 @@ public class StudentBSTTest {
 		Integer[] order = { -40, -34, 0, 2, 5, 6, 9, 12, 23, 67, 76, 232 };
 		assertArrayEquals(order, tree.order());
 
+		Integer[] descendingOrder = { 232, 76, 67, 23, 12, 9, 6, 5, 2, 0, -34, -40 };
+		assertArrayEquals(descendingOrder, tree.descendingOrder());
 	}
 }

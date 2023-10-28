@@ -59,6 +59,12 @@ public interface BT<T> {
 	public T[] postOrder();
 
 	/**
+	 * Returns an array of elements filled according to the descending order
+	 * in a BT.
+	 */
+	public T[] descendingOrder();
+
+	/**
 	 * Returns the number of nodes (not NIL) in a BT.
 	 */
 	public int size();

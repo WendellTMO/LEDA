@@ -291,7 +291,26 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 			recursivePostOrder((BSTNode<T>) node.getRight(), array);
 			array.add(node.getData());
 		}
-	} 
+	}
+	
+	@Override
+	@SuppressWarnings("unchecked")
+	public T[] descendingOrder() {
+		ArrayList<T> tempArray = new ArrayList<T>();
+		recursiveDescendingOrder(getRoot(), tempArray);
+
+		T[] result = (T[]) tempArray.toArray(new Comparable[0]);
+
+		return result;
+	}
+
+	private void recursiveDescendingOrder(BSTNode<T> node, ArrayList<T> array) {
+		if (!node.isEmpty()) {
+			recursiveDescendingOrder((BSTNode<T>) node.getRight(), array);
+			array.add(node.getData());
+			recursiveDescendingOrder((BSTNode<T>) node.getLeft(), array);
+		}
+	}
 
 	/**
 	 * This method is already implemented using recursion. You must understand

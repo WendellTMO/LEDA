@@ -68,6 +68,4 @@ public class SimpleBSTManipulationImpl<T extends Comparable<T>> implements Simpl
 
 		return result;
 	}
-
-
 }
