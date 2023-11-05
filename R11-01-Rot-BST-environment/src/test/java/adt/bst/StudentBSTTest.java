@@ -183,4 +183,40 @@ public class StudentBSTTest {
 		Integer[] descendingOrder = { 232, 76, 67, 23, 12, 9, 6, 5, 2, 0, -34, -40 };
 		assertArrayEquals(descendingOrder, tree.descendingOrder());
 	}
+
+	@Test
+	public void testConstruct() {
+		Integer[] array = new Integer[] {1, 2, 3};
+		tree.constructMinimalHeight(array);
+		assertEquals(tree.height(), 1);
+		assertArrayEquals(array, tree.order());
+		
+		// remove all items so we'll be able to test again
+		for (int i = 0; i < array.length; i++) {
+			tree.remove(array[i]);
+		}
+
+		array = new Integer[] {1, 2, 3, 4, 5};
+		tree.constructMinimalHeight(array);
+		assertEquals(tree.height(), 2);
+		assertArrayEquals(array, tree.order());
+
+		for (int i = 0; i < array.length; i++) {
+			tree.remove(array[i]);
+		}
+
+		array = new Integer[] {1, 2, 3, 4, 5, 6, 7};
+		tree.constructMinimalHeight(array);
+		assertEquals(tree.height(), 2);
+		assertArrayEquals(array, tree.order());
+
+		for (int i = 0; i < array.length; i++) {
+			tree.remove(array[i]);
+		}
+
+		array = new Integer[] {1, 2, 3, 4, 5, 6, 7, 8};
+		tree.constructMinimalHeight(array);
+		assertEquals(tree.height(), 3);
+		assertArrayEquals(array, tree.order());
+	}
 }

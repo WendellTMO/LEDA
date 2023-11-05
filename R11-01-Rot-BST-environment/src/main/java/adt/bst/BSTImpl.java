@@ -293,6 +293,7 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 		}
 	}
 	
+	// interview question 01
 	@Override
 	@SuppressWarnings("unchecked")
 	public T[] descendingOrder() {
@@ -309,6 +310,24 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 			recursiveDescendingOrder((BSTNode<T>) node.getRight(), array);
 			array.add(node.getData());
 			recursiveDescendingOrder((BSTNode<T>) node.getLeft(), array);
+		}
+	}
+
+	// interview question 02
+	public BSTNode<T> constructMinimalHeight(T[] array) {
+		BSTNode<T> result = getRoot();
+		if (array != null) {
+			binaryConstruct(array, 0, array.length - 1);
+		}
+		return result;
+	}
+
+	private void binaryConstruct(T[] array, int left, int right) {
+		if (left <= right) {
+			int middle = (left + right) / 2;
+			insert(array[middle]);
+			binaryConstruct(array, left, middle - 1);
+			binaryConstruct(array, middle + 1, right);
 		}
 	}
 
