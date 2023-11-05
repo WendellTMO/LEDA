@@ -35,7 +35,7 @@ public class AVLTreeVerifierImpl<T extends Comparable<T>> extends BSTVerifierImp
 	private boolean recursiveVerification(BSTNode<T> node) {
 		boolean result = true;
 		if(node != null && !node.isEmpty()) {
-			int balance = height((BSTNode<T>) node.getLeft()) - height((BSTNode<T>) node.getRight());
+			int balance = avlTree.calculateBalance(node);
 			if (Math.abs(balance) > 1) {
 				result = false;
 			}
@@ -44,16 +44,5 @@ public class AVLTreeVerifierImpl<T extends Comparable<T>> extends BSTVerifierImp
 		return result;
 	}
 		
-	private int height(BSTNode<T> node) {
-		int tempLeft = -1;
-		int tempRight = -1;
-
-		if (node != null && !node.isEmpty()) {
-			tempLeft = 1 + height((BSTNode<T>) node.getLeft());
-			tempRight = 1 + height((BSTNode<T>) node.getRight());
-		}
-		
-		return Math.max(tempLeft, tempRight);
-	}
 
 }
