@@ -43,6 +43,5 @@ public class AVLTreeVerifierImpl<T extends Comparable<T>> extends BSTVerifierImp
 		}
 		return result;
 	}
-		
 
 }
