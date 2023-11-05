@@ -331,6 +331,31 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 		}
 	}
 
+	// interview question 03
+	public T findKGreater(T element) {
+		T result = null;
+		if (element != null) {
+			T searching = null;
+			result = findKGreater(element, searching, getRoot());
+		}
+		return result;
+	} 
+
+	private T findKGreater(T element, T searching, BSTNode<T> node) {
+		T result = searching;
+		if (!node.isEmpty()) {
+			if (node.getData().compareTo(element) <= 0) {
+				result = findKGreater(element, searching, (BSTNode<T>) node.getRight());
+			} else { 
+				if (searching == null || node.getData().compareTo(searching) < 0) {
+					searching = node.getData();
+				}
+				result = findKGreater(element, searching, (BSTNode<T>) node.getLeft());
+			}
+		}
+		return result;
+	}
+
 	/**
 	 * This method is already implemented using recursion. You must understand
 	 * how it work and use similar idea with the other methods.

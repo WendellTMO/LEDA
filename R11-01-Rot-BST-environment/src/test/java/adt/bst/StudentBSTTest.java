@@ -219,4 +219,16 @@ public class StudentBSTTest {
 		assertEquals(tree.height(), 3);
 		assertArrayEquals(array, tree.order());
 	}
+
+	@Test
+	public void findGreater() {
+		
+		// -40 -34 0 2 5 6 9 12 23 67 76 232
+		fillTree();
+
+		assertEquals(new Integer(2), tree.findKGreater(new Integer(0)));
+		assertEquals(new Integer(-34), tree.findKGreater(new Integer(-40)));
+		assertEquals(null, tree.findKGreater(new Integer(232)));
+
+	}
 }
