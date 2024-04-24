@@ -29,7 +29,8 @@ public class Solution {
         }
 
         return false;
-
+        // Deixei do jeito de cima para fins didáticos,
+        // poderia colocar desse jeito:
         // return node.right == null && node.left == null;
     }
 
